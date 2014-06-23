@@ -75,7 +75,7 @@ addRelNavPackages()
 {
   if [ ! -d "$1" ]; then
     yellow "Setting `blue $1`...";
-    wstool set ${1} --svn -y svn+ssh://magiccvs.byu.edu/svn/indoor_nav/hydro/${1}/trunk;
+    wstool set ${1} --git -y magiccvs:/git/relative_nav/${1}.git;
     wstool update ${1}; 
   else
     yellow "`blue $1` already exists... skipping to next package";
