@@ -15,11 +15,11 @@ function green  { echo -e "\033[1;32m$@ ${COFF}"; }
 function yellow { echo -e "\033[1;33m$@ ${COFF}"; }
 function blue   { echo -e "\033[1;34m$@ ${COFF}"; }
  
-if [ ! -d /opt/ros/hydro ]; then
-  red "Make sure you install ROS hydro first"
+if [ ! -d /opt/ros/indigo]; then
+  red "Make sure you install ROS indigo first"
   exit 1
 fi
-source /opt/ros/hydro/setup.bash
+source /opt/ros/indigo/setup.bash
  
 ### prepares catkin workspace with wstool, creates if doesn't exist
 if [ ! -d "$WORKSPACE" ]; then
@@ -82,8 +82,7 @@ addRelNavPackages()
   fi
 }
  
-### add directories that you want added from the svn here (with a space between). 
-### must be in standard /hydro/DIRECTORY/trunk format
+### add directories that you want added from the git here (with a space between). 
 for DIRECTORY in "relative_nav_msgs" "mikro_serial" "mikro_relay" \
 	"rotor_controller" "control_toolbox" "realtime_tools" "evart_bridge" \
 	"rotor_estimator" "relative_nav_launch" "path_planner_geometric" \
