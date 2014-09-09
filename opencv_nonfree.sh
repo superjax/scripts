@@ -20,9 +20,6 @@ then
   echo "Moving lib files to /usr/lib/x86_64-linux-gnu/"
   sudo cp ~/tmp_opencv/opencv_nonfree/lib/* /usr/lib/x86_64-linux-gnu/ || { echo 'Cleaning up tmp files...'; rm -r ~/tmp_opencv; exit 1; }
   echo "Done."
-  echo "Moving share files to /usr/share/OpenCV/"
-  sudo cp ~/tmp_opencv/opencv_nonfree/share/OpenCV/* /usr/share/OpenCV/ || { echo 'Cleaning up tmp files...'; rm -r ~/tmp_opencv; exit 1; }
-  echo "Done."
   
   # Cleanup
   echo "Cleaning up tmp files..."
