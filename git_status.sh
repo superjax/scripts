@@ -1,6 +1,7 @@
 #!/bin/bash
 # Run in your catkin_ws/src directory and it will highlight in red
 # which repos you need to push/pull
+# Does NOT report anything about local branches
 
 COFF="\033[0m"
 function blue { echo -e "\033[1;34m$@ ${COFF}"; }
