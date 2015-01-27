@@ -3,6 +3,7 @@ clear rosbag_wrapper;
 clear ros.Bag;
 
 addpath('navfn')
+t0 = -1;
 
 bag = ros.Bag.load(bagfile);
 for topic = topics
@@ -18,28 +19,37 @@ for topic = topics
     a = [msgs{:,:}];
     c = [meta{:,:}];
     d = [c.time];
+    if t0 < 0
+       t0 = d(1).time - 0.1;
+    end
     clear struct
     switch type{:}
         case 'relative_nav_msgs/FilterState'
             b = [a.transform];
             struct.transform.translation = [b.translation];
             struct.transform.rotation = [b.rotation];
-            struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
-            struct.time = [d.time] - d(1).time;
+            struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;     
+            struct.node_id = [a.node_id];
+            struct.time = [d.time] - t0;
         case 'geometry_msgs/Transform'
             struct.transform.translation = [a.translation];
             struct.transform.rotation = [a.rotation];
             struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
-            struct.time = [d.time];
+            struct.time = [d.time] - t0;
          case 'relative_nav_msgs/DesiredState'
             struct.pose = [a.pose];
             struct.node_id = [a.node_id];
-            struct.time = [d.time];
+            struct.time = [d.time] - t0;
         case 'relative_nav_msgs/Snapshot'
             struct.state = [a.state];
             struct.covariance = [a.covariance_diagonal];
             struct.node_id = [a.node_id];
-            struct.time = [d.time]; % This could also use the header time
+            struct.time = [d.time] - t0; % This could also use the header time
+        case 'geometry_msgs/PoseStamped'
+            b = [a.pose];
+            struct.pose.position = [b.position];
+            struct.pose.orientation = [b.orientation];
+            struct.time = [d.time] - t0; % This could also use the header time
         otherwise
             fprintf('     Type: %s not yet supported!\n',type{:});
             continue
