@@ -83,5 +83,5 @@ i = 3;
 plot(data.current_state.time, data.current_state.transform.euler(i,:),'g.'); hold on;
 plot(data.estimator.ekf.state.time, data.estimator.ekf.state.transform.euler(i,:),'b.'); hold on;
 plot([data.rviz_goal.time;data.rviz_goal.time],[30*ones(size(data.rviz_goal.time));-30*ones(size(data.rviz_goal.time))],'k'); hold on;
-ylabel(strcat(labels{i},' (deg)'));
+ylabel(strcat(labels{1},' (deg)'));
 xlabel('time (sec)');

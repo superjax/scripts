@@ -2,6 +2,7 @@ function data = processTopics(topics,bagfile)
 clear rosbag_wrapper;
 clear ros.Bag;
 
+addpath('matlab_rosbag-0.4.1-linux64')
 addpath('navfn')
 t0 = -1;
 
