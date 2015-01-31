@@ -6,6 +6,7 @@ clear ros.Bag;
     t0 = -1;
   end
 
+addpath('matlab_rosbag-0.4.1-linux64')
 addpath('navfn')
 
 bag = ros.Bag.load(bagfile);
