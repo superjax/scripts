@@ -1,9 +1,12 @@
-function data = processTopics(topics,bagfile)
+function data = processTopics(topics,bagfile,t0)
 clear rosbag_wrapper;
 clear ros.Bag;
 
+  if nargin < 3
+    t0 = -1;
+  end
+
 addpath('navfn')
-t0 = -1;
 
 bag = ros.Bag.load(bagfile);
 for topic = topics
@@ -28,7 +31,8 @@ for topic = topics
             b = [a.transform];
             struct.transform.translation = [b.translation];
             struct.transform.rotation = [b.rotation];
-            struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;     
+            struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
+            struct.velocity = [a.velocity];     
             struct.node_id = [a.node_id];
             struct.time = [d.time] - t0;
         case 'geometry_msgs/Transform'
@@ -49,7 +53,17 @@ for topic = topics
             b = [a.pose];
             struct.pose.position = [b.position];
             struct.pose.orientation = [b.orientation];
-            struct.time = [d.time] - t0; % This could also use the header time
+            struct.time = [d.time] - t0;
+        case 'sensor_msgs/Range'
+            struct.range = [a.range];
+            struct.time = [d.time] -t0; % This could also use the header time
+        case 'relative_nav_msgs/VOUpdate'
+            b = [a.transform];
+            struct.current_keyframe_id = [a.current_keyframe_id];
+            struct.valid_transformation = [a.valid_transformation];
+            struct.transform.translation = [b.translation];
+            struct.transform.rotation = [b.rotation];
+            struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
         otherwise
             fprintf('     Type: %s not yet supported!\n',type{:});
             continue
