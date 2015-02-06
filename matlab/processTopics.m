@@ -43,6 +43,8 @@ for topic = topics
             struct.time = [d.time] - t0;
          case 'relative_nav_msgs/DesiredState'
             struct.pose = [a.pose];
+            struct.velocity = [a.velocity];
+            struct.acceleration = [a.acceleration];
             struct.node_id = [a.node_id];
             struct.time = [d.time] - t0;
         case 'relative_nav_msgs/Snapshot'
@@ -68,6 +70,22 @@ for topic = topics
         case 'relative_nav_msgs/Command'
             struct.commands = [a];
             struct.time = [d.time] -t0; % This could also use the header time
+        case 'evart_bridge/transform_plus'
+            b = [a.transform];
+            struct.transform.translation = [b.translation];
+            struct.transform.rotation = [b.rotation];
+            struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
+            struct.euler = [a.euler];
+            struct.velocity = [a.velocity];
+            struct.time = [d.time] -t0; % This could also use the header time
+        case 'relative_nav_msgs/Edge'
+            b = [a.transform];
+            struct.transform.translation = [b.translation];
+            struct.transform.rotation = [b.rotation];
+            struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
+            struct.from_node_id = [a.from_node_id];
+            struct.to_node_id = [a.to_node_id];
+            struct.time = [d.time] -t0; % This could also use the header time    
         otherwise
             fprintf('     Type: %s not yet supported!\n',type{:});
             continue
