@@ -67,6 +67,7 @@ for topic = topics
             struct.transform.translation = [b.translation];
             struct.transform.rotation = [b.rotation];
             struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
+            struct.time = [d.time] -t0; % This could also use the header time
         case 'relative_nav_msgs/Command'
             struct.commands = [a];
             struct.time = [d.time] -t0; % This could also use the header time
