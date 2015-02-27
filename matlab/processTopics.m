@@ -87,6 +87,12 @@ for topic = topics
             struct.from_node_id = [a.from_node_id];
             struct.to_node_id = [a.to_node_id];
             struct.time = [d.time] -t0; % This could also use the header time    
+        case 'nav_msgs/Odometry'
+            b = [a.pose];
+            c = [b.pose];
+            struct.pose.position = [c.position];
+            struct.pose.orientation = [c.orientation];
+            struct.time = [d.time] -t0; % This could also use the header time    
         otherwise
             fprintf('     Type: %s not yet supported!\n',type{:});
             continue
