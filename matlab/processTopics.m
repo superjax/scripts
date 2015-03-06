@@ -6,8 +6,8 @@ clear ros.Bag;
     t0 = -1;
   end
 
-addpath('matlab_rosbag-0.4.1-linux64')
-addpath('navfn')
+addpath('./matlab_rosbag-0.4.1-linux64')
+addpath('./navfn')
 
 bag = ros.Bag.load(bagfile);
 for topic = topics
@@ -93,6 +93,9 @@ for topic = topics
             struct.pose.position = [c.position];
             struct.pose.orientation = [c.orientation];
             struct.time = [d.time] -t0; % This could also use the header time    
+        case 'geometry_msgs/Point'
+            struct.point = a;
+            struct.time = [d.time] -t0; % This could also use the header time      
         otherwise
             fprintf('     Type: %s not yet supported!\n',type{:});
             continue
