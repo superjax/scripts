@@ -6,8 +6,8 @@ clear ros.Bag;
     t0 = -1;
   end
 
-addpath('matlab_rosbag-0.4.1-linux64')
-addpath('navfn')
+addpath('./matlab_rosbag-0.4.1-linux64')
+addpath('./navfn')
 
 bag = ros.Bag.load(bagfile);
 for topic = topics
@@ -67,6 +67,7 @@ for topic = topics
             struct.transform.translation = [b.translation];
             struct.transform.rotation = [b.rotation];
             struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
+            struct.time = [d.time] -t0; % This could also use the header time
         case 'relative_nav_msgs/Command'
             struct.commands = [a];
             struct.time = [d.time] -t0; % This could also use the header time
@@ -87,6 +88,15 @@ for topic = topics
             struct.to_node_id = [a.to_node_id];
             struct.covariance = [a.covariance];
             struct.time = [d.time] -t0; % This could also use the header time    
+        case 'nav_msgs/Odometry'
+            b = [a.pose];
+            c = [b.pose];
+            struct.pose.position = [c.position];
+            struct.pose.orientation = [c.orientation];
+            struct.time = [d.time] -t0; % This could also use the header time    
+        case 'geometry_msgs/Point'
+            struct.point = a;
+            struct.time = [d.time] -t0; % This could also use the header time      
         otherwise
             fprintf('     Type: %s not yet supported!\n',type{:});
             continue

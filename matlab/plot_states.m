@@ -21,7 +21,7 @@ for i = 1:3
  xlabel('time (sec)');
 end
 suptitle('Position')
-plot(data.sensors.alt_msgs.time, data.sensors.alt_msgs.range,'co');
+plot(data.mavros.distance_sensor.time, data.mavros.distance_sensor.range,'co');
 
 figure(2); clf
 % Plot euler
