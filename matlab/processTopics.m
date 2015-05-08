@@ -85,6 +85,7 @@ for topic = topics
             struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
             struct.from_node_id = [a.from_node_id];
             struct.to_node_id = [a.to_node_id];
+            struct.covariance = [a.covariance];
             struct.time = [d.time] -t0; % This could also use the header time    
         otherwise
             fprintf('     Type: %s not yet supported!\n',type{:});

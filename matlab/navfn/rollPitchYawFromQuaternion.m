@@ -1,4 +1,4 @@
-function [ output ] = rollPitchYawFromQuaternion( q )
+function [ phi, theta, psi ] = rollPitchYawFromQuaternion( q )
 %rollPitchYawFromQuaternion Return attitude in euler angle form
 %   Usage:
 %      [ roll, pitch, yaw ] = rollPitchYawFromQuaternion( q )
@@ -19,7 +19,5 @@ end
 phi   = atan2(2.0*eo.*ex + 2.0*ey.*ez, eo.*eo + ez.*ez - ex.*ex - ey.*ey);
 theta = asin(2.0*eo.*ey - 2.0*ex.*ez);
 psi   = atan2(2.0*eo.*ez + 2.0*ex.*ey, eo.*eo + ex.*ex - ey.*ey - ez.*ez);
-
-output = [phi,theta,psi].';
 
 end
