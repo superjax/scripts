@@ -1,4 +1,5 @@
 %% Simulated Data
+%addpath('barfoot_tro14')
 clear all;
 
 nIters = 100;
@@ -11,7 +12,7 @@ P = repmat([ 0 0 0 0 0 0.0009 ],nNodes,1);
 [GT,GP,GT_noise] = compound_edges(X,P,nIters,x0,p0);
 figure(1); clf; axis('equal');
 axis([-65   100   -10  105]);
-[handles,labels] = plot_compounded_edges(GT,GP,GT_noise)
+[handles,labels] = plot_compounded_edges(GT,GP,GT_noise);
 legend(handles,labels);
 
 %% Centennial Middle School Data
