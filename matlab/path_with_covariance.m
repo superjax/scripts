@@ -41,7 +41,7 @@ plot_centennial_truth
 labels{4} = 'Truth';
 legend([handles h_gps],labels,'Location','SouthEast');
 
-%%
+%% Centennial Middle School Data with Artifical Yaw Uncertainty
 % Alter data
 Xb = Xa;
 Pb = Pa;
@@ -58,3 +58,29 @@ figure(4); clf;
 axis([-10  170  -20   100])
 plot_centennial_truth
 plot_compounded_edges(GT,GP,GT_noise)
+
+
+%% WSC Data
+clear all;
+nIters = 20;
+% Import data from rosbag
+[Xa,Pa,Na] = import_pose_graph('~/rosbag/03_WSC_2015_02_24.bag');
+
+% Alter data
+jumps = find(abs(Xa(:,2)) > 0.4);
+Xa(jumps,1:2) = repmat([0 0],length(jumps),1);
+Pa(jumps,1:2) = 500*Pa(jumps,1:2);
+
+% Set location/attitude of initial node
+x0 = [0 0 0 0 0 -90*pi/180];
+p0 = [0 0 0 0 0 0];
+[GT,GP,GT_noise] = compound_edges(Xa,Pa,nIters,x0,p0);
+%axis([-10  170  -20   100])
+
+% Plot results
+figure(3); clf;
+axis([  -19.4128   44.3546  -17.3552   22.5441])
+%plot_centennial_truth
+[handles,labels] = plot_compounded_edges(GT,GP,GT_noise)
+labels{4} = 'Truth';
+legend([handles h_gps],labels,'Location','SouthEast');
