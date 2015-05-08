@@ -1,5 +1,5 @@
 % Grab true path, convert to UTM, plot
-gps_deg = load('/home/dave/Downloads/path/coords.csv');
+gps_deg = load('figs/coords.csv');
 gps_utm = gps_deg;
 for i = 1:size(gps_deg,1);
     [gps_x,gps_y] = deg2utm(gps_deg(i,2),gps_deg(i,1));
