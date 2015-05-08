@@ -64,12 +64,12 @@ plot_compounded_edges(GT,GP,GT_noise)
 clear all;
 nIters = 20;
 % Import data from rosbag
-[Xa,Pa,Na] = import_pose_graph('~/rosbag/03_WSC_2015_02_24.bag');
+[Xa,Pa] = import_pose_graph('~/rosbag/03_WSC_2015_02_24.bag');
 
 % Alter data
-jumps = find(abs(Xa(:,2)) > 0.4);
-Xa(jumps,1:2) = repmat([0 0],length(jumps),1);
-Pa(jumps,1:2) = 500*Pa(jumps,1:2);
+%jumps = find(abs(Xa(:,2)) > 0.4);
+%Xa(jumps,1:2) = repmat([0 0],length(jumps),1);
+%Pa(jumps,1:2) = 500*Pa(jumps,1:2);
 
 % Set location/attitude of initial node
 x0 = [0 0 0 0 0 -90*pi/180];
