@@ -42,6 +42,12 @@ sudo apt-get install -y joy
 blue "camera calibration parsers"
 sudo apt-get install -y ros-indigo-camera-calibration-parsers 
 
+<<<<<<< HEAD
 blue "openni2"
 sudo apt-get install -y ros-indigo-openni2-camera
 sudo apt-get install -y ros-indigo-openni2-launch
+=======
+blue "Openni2"
+sudo apt-get install -y ros-indigo-openni2-launch
+sudo apt-get install -y ros-indigo-openni2-camera
+>>>>>>> 966c40c28fed29a32e6a09938b503f97ca6e6796
