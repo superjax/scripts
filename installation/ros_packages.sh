@@ -37,7 +37,7 @@ blue "geodesy"
 sudo apt-get install -y ros-indigo-geodesy
 
 blue "joyConfig"
-sudo apt-get install -y joy
+sudo apt-get install -y ros-indigo-joy
 
 blue "camera calibration parsers"
 sudo apt-get install -y ros-indigo-camera-calibration-parsers 
