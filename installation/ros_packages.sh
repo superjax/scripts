@@ -45,3 +45,6 @@ sudo apt-get install -y ros-indigo-camera-calibration-parsers
 blue "openni2"
 sudo apt-get install -y ros-indigo-openni2-camera
 sudo apt-get install -y ros-indigo-openni2-launch
+
+blue "GSL"
+sudo apt-get install -y libgsl0-dev
