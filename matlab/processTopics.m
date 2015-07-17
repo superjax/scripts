@@ -116,6 +116,15 @@ for topic = topics
             struct.acc = [a.linear_acceleration];
             struct.gyro = [a.angular_velocity];
             struct.time = [d.time] -t0; % This could also use the header time    
+        case 'sensor_msgs/LaserScan'
+            struct.angle_min = [a.angle_min];
+            struct.angle_max = [a.angle_max];
+            struct.angle_increment = [a.angle_increment];
+            struct.time_increment = [a.time_increment];
+            struct.range_min = [a.range_min];
+            struct.range_max = [a.range_max];
+            struct.ranges = [a.ranges];
+            struct.intensities = [a.intensities]
         otherwise
             fprintf('     Type: %s not yet supported!\n',type{:});
             continue
