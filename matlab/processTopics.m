@@ -32,7 +32,8 @@ for topic = topics
             b = [a.transform];
             struct.transform.translation = [b.translation];
             struct.transform.rotation = [b.rotation];
-            struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
+            [r,p,y] = rollPitchYawFromQuaternion(struct.transform.rotation.');
+            struct.transform.euler = [r,p,y]*180/pi;
             struct.velocity = [a.velocity];     
             struct.node_id = [a.node_id];
             struct.time = [d.time] - t0;
@@ -41,7 +42,14 @@ for topic = topics
             struct.transform.rotation = [a.rotation];
             struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
             struct.time = [d.time] - t0;
-         case 'relative_nav_msgs/DesiredState'
+        case 'geometry_msgs/TransformStamped'
+            b = [a.transform];
+            struct.transform.translation = [b.translation];
+            struct.transform.rotation = [b.rotation];
+            [r,p,y] = rollPitchYawFromQuaternion(struct.transform.rotation.');
+            struct.transform.euler = [r,p,y]*180/pi;
+            struct.time = [d.time] - t0;
+        case 'relative_nav_msgs/DesiredState'
             struct.pose = [a.pose];
             struct.velocity = [a.velocity];
             struct.acceleration = [a.acceleration];
@@ -63,10 +71,12 @@ for topic = topics
         case 'relative_nav_msgs/VOUpdate'
             b = [a.transform];
             struct.current_keyframe_id = [a.current_keyframe_id];
+            struct.new_keyframe = [a.new_keyframe];
             struct.valid_transformation = [a.valid_transformation];
             struct.transform.translation = [b.translation];
             struct.transform.rotation = [b.rotation];
-            struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
+            [r,p,y] = rollPitchYawFromQuaternion(struct.transform.rotation.');
+            struct.transform.euler = [r,p,y]*180/pi;
             struct.time = [d.time] -t0; % This could also use the header time
         case 'relative_nav_msgs/Command'
             struct.commands = [a];
@@ -96,7 +106,16 @@ for topic = topics
             struct.time = [d.time] -t0; % This could also use the header time    
         case 'geometry_msgs/Point'
             struct.point = a;
-            struct.time = [d.time] -t0; % This could also use the header time      
+            struct.time = [d.time] -t0; % This could also use the header time
+        case 'ublox_msgs/NavPOSLLH'
+            struct.lon = double([a.lon])/1e7;
+            struct.lat = double([a.lat])/1e7;
+            struct.hAcc = [a.hAcc];
+            [struct.x,struct.y,struct.zone] = deg2utm(struct.lat,struct.lon);
+        case 'sensor_msgs/Imu'
+            struct.acc = [a.linear_acceleration];
+            struct.gyro = [a.angular_velocity];
+            struct.time = [d.time] -t0; % This could also use the header time    
         otherwise
             fprintf('     Type: %s not yet supported!\n',type{:});
             continue
