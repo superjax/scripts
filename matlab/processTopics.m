@@ -40,7 +40,8 @@ for topic = topics
         case 'geometry_msgs/Transform'
             struct.transform.translation = [a.translation];
             struct.transform.rotation = [a.rotation];
-            struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
+            [r,p,y] = rollPitchYawFromQuaternion(struct.transform.rotation.');
+            struct.transform.euler = [r,p,y]*180/pi;
             struct.time = [d.time] - t0;
         case 'geometry_msgs/TransformStamped'
             b = [a.transform];
