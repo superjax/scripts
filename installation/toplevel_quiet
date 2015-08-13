@@ -2,6 +2,8 @@
 
   Environment/install_environment
 
+  sudo apt-get install -y git vim openssh-server
+
   ./install_indigo
 
   ./ros_packages

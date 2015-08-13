@@ -1,5 +1,13 @@
 #!/bin/bash
 
+echo "Install git vim, and ssh? [Y/n]"
+read GIT
+if ["$GIT" == 'n' ]; then
+  echo "bypassing installation"
+else
+  sudo apt-get install -y git vim openssh-server
+fi
+
 echo "Install Environment? [Y/n]"
 read ENVIRONMENT
 if [ "$ENVIRONMENT" == 'n' ]; then
