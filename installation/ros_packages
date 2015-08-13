@@ -1,50 +1,43 @@
 #!/bin/sh
 
-#color functions
-COFF="\033[0m"
-function red    { echo -e "\033[1;31m$@ ${COFF}"; }
-function green  { echo -e "\033[1;32m$@ ${COFF}"; }
-function yellow { echo -e "\033[1;33m$@ ${COFF}"; }
-function blue   { echo -e "\033[1;34m$@ ${COFF}"; }
-
-yellow "Installing Relative Nav Specific ROS Packages"
-blue "NAVFN"
+echo_yellow "Installing Relative Nav Specific ROS Packages"
+echo_blue "NAVFN"
 sudo apt-get install -y ros-indigo-navfn
 
-blue "Control Toolbox"
+echo_blue "Control Toolbox"
 sudo apt-get install -y ros-indigo-control-toolbox
 
-blue "GLUT"
+echo_blue "GLUT"
 sudo apt-get install -y freeglut3-dev
 
-blue "Libbullet"
+echo_blue "Libbullet"
 sudo apt-get install -y libbullet-dev
 
-blue "G2o"
+echo_blue "G2o"
 sudo apt-get install -y ros-indigo-libg2o
 
-blue "SuiteSpares"
+echo_blue "SuiteSpares"
 sudo apt-get install -y libsuitesparse-dev
 
-blue "Rosserial"
+echo_blue "Rosserial"
 sudo apt-get install -y ros-indigo-rosserial-arduino
 sudo apt-get install -y ros-indigo-rosserial
 
-blue "pcl-ros"
+echo_blue "pcl-ros"
 sudo apt-get install -y ros-indigo-pcl-ros
 
-blue "geodesy"
+echo_blue "geodesy"
 sudo apt-get install -y ros-indigo-geodesy
 
-blue "joyConfig"
+echo_blue "joyConfig"
 sudo apt-get install -y ros-indigo-joy
 
-blue "camera calibration parsers"
+echo_blue "camera calibration parsers"
 sudo apt-get install -y ros-indigo-camera-calibration-parsers 
 
-blue "openni2"
+echo_blue "openni2"
 sudo apt-get install -y ros-indigo-openni2-camera
 sudo apt-get install -y ros-indigo-openni2-launch
 
-blue "GSL"
+echo_blue "GSL"
 sudo apt-get install -y libgsl0-dev
