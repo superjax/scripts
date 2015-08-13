@@ -1,0 +1,17 @@
+#!/bin/bash
+
+  Environment/install_environment
+
+  ./install_indigo
+
+  ./ros_packages
+
+  Programs/install_google_chrome
+
+  Programs/install_sublime
+
+  Programs/install_qtcreator
+
+  Programs/install_spotify
+
+  Themes/install_themes
