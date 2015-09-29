@@ -1,20 +1,25 @@
 #!/bin/bash
 
-echo "Install git vim, and ssh? [Y/n]"
-read GIT
-if ["$GIT" == 'n' ]; then
-  echo "bypassing installation"
-else
-  sudo apt-get install -y git vim openssh-server
-fi
+#echo "Install git vim, and ssh? [Y/n]"
+#read GIT
+#if ["$GIT" == 'n' ]; then
+ # echo "bypassing installation"
+#else
+#  sudo apt-get install -y git vim openssh-server
+#fi
 
 echo "Install Environment? [Y/n]"
 read ENVIRONMENT
 if [ "$ENVIRONMENT" == 'n' ]; then
-  bash Environment/color_functions/copy_color_functions
+  cd ./Environment/color_functions
+  bash copy_color_functions
+  cd ../..
 else
-  Environment/install_environment
+  cd ./Environment
+  bash install_environment
+  cd ..
 fi
+
 
 echo_yellow "Install ROS Indigo? [Y/n]"
 read INDIGO
@@ -38,7 +43,9 @@ read CHROME
 if [ "$CHROME" == 'n' ]; then
   echo_red "bypassing Chrome installation"
 else
-  Programs/install_google_chrome
+  cd Programs
+  ./install_google_chrome
+  cd ..
 fi
 
 echo_yellow "Install Sublime? [Y/n]"
@@ -54,7 +61,9 @@ read QT
 if [ "$QT" == 'n' ]; then
   echo_red "bypassing QtCreator installation"
 else
-  Programs/install_qtcreator
+  cd Programs
+  ./install_qtcreator
+  cd ..
 fi
 
 echo_yellow "Install Spotify? [Y/n]"
@@ -70,5 +79,7 @@ read THEME
 if [ "$THEME" == 'n' ]; then
   echo_red "bypassing Theme installation"
 else
-  Themes/install_themes
+  cd Themes
+  ./install_themes
+  cd ..
 fi
