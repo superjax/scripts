@@ -1,0 +1,85 @@
+#!/bin/bash
+
+#echo "Install git vim, and ssh? [Y/n]"
+#read GIT
+#if ["$GIT" == 'n' ]; then
+ # echo "bypassing installation"
+#else
+#  sudo apt-get install -y git vim openssh-server
+#fi
+
+echo "Install Environment? [Y/n]"
+read ENVIRONMENT
+if [ "$ENVIRONMENT" == 'n' ]; then
+  cd ./Environment/color_functions
+  bash copy_color_functions
+  cd ../..
+else
+  cd ./Environment
+  bash install_environment
+  cd ..
+fi
+
+
+echo_yellow "Install ROS Indigo? [Y/n]"
+read INDIGO
+if [ "$INDIGO" == 'n' ]; then
+  echo_red "bypassing ROS indigo installation"
+else
+  ./install_indigo
+fi
+
+echo_yellow "Install additional ROS Packages? [Y/n]"
+read PACKAGES
+if [ "$PACKAGES" == 'n' ]; then
+  echo_red "bypassing additional ROS Package installation"
+else
+  ./ros_packages
+fi
+
+
+echo_yellow "Install Google Chrome? [Y/n]"
+read CHROME
+if [ "$CHROME" == 'n' ]; then
+  echo_red "bypassing Chrome installation"
+else
+  cd Programs
+  ./install_google_chrome
+  cd ..
+fi
+
+echo_yellow "Install Sublime? [Y/n]"
+read SUBLIME
+if [ "$SUBLIME" == 'n' ]; then
+  echo_red "bypassing Sublime Installation"
+else
+  Programs/install_sublime
+fi
+
+echo_yellow "Install QtCreator? [Y/n]"
+read QT
+if [ "$QT" == 'n' ]; then
+  echo_red "bypassing QtCreator installation"
+else
+  cd Programs
+  ./install_qtcreator
+  cd ..
+fi
+
+echo_yellow "Install Spotify? [Y/n]"
+read SPOTIFY
+if [ "$SPOTIFY" == 'n' ]; then
+  echo_red "bypassing Spotify installation"
+else
+  Programs/install_spotify
+fi
+
+echo_yellow "Install Custom Theme? [Y/n]"
+read THEME
+if [ "$THEME" == 'n' ]; then
+  echo_red "bypassing Theme installation"
+else
+  cd Themes
+  ./install_themes
+  cd ..
+fi

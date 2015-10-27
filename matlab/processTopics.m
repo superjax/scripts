@@ -37,6 +37,12 @@ for topic = topics
             struct.velocity = [a.velocity];     
             struct.node_id = [a.node_id];
             struct.time = [d.time] - t0;
+         case 'sensor_msgs/NavSatFix'
+            struct.latitude = [a.latitude];
+            struct.longitude = [a.longitude];
+            cov = [a.position_covariance];
+            struct.hAcc = cov(1,:);
+            struct.time = [d.time] - t0;
         case 'geometry_msgs/Transform'
             struct.transform.translation = [a.translation];
             struct.transform.rotation = [a.rotation];

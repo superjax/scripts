@@ -1,0 +1,19 @@
+#!/bin/bash
+
+  Environment/install_environment
+
+  sudo apt-get install -y git vim openssh-server
+
+  ./install_indigo
+
+  ./ros_packages
+
+  Programs/install_google_chrome
+
+  Programs/install_sublime
+
+  Programs/install_qtcreator
+
+  Programs/install_spotify
+
+  Themes/install_themes
