@@ -1,6 +1,6 @@
 function data = processTopics(topics,bagfile,t0)
-clear rosbag_wrapper;
-clear ros.Bag;
+%clear rosbag_wrapper;
+%clear ros.Bag;
 
   if nargin < 3
     t0 = -1;
@@ -55,6 +55,7 @@ for topic = topics
             struct.velocity = [a.velocity];
             struct.acceleration = [a.acceleration];
             struct.node_id = [a.node_id];
+            
             struct.time = [d.time] - t0;
         case 'relative_nav_msgs/Snapshot'
             struct.state = [a.state];
@@ -113,6 +114,13 @@ for topic = topics
             struct.lat = double([a.lat])/1e7;
             struct.hAcc = [a.hAcc];
             [struct.x,struct.y,struct.zone] = deg2utm(struct.lat,struct.lon);
+        case 'sensor_msgs/NavSatFix'
+            struct.lon = [a.longitude];
+            struct.lat = [a.latitude];
+            cov = [a.position_covariance];
+            struct.cov = cov(1,:);
+            [struct.x,struct.y,struct.zone] = deg2utm(struct.lat,struct.lon);
+            struct.time = [d.time] -t0; % This could also use the header time    
         case 'sensor_msgs/Imu'
             struct.acc = [a.linear_acceleration];
             struct.gyro = [a.angular_velocity];
@@ -126,6 +134,21 @@ for topic = topics
             struct.range_max = [a.range_max];
             struct.ranges = [a.ranges];
             struct.intensities = [a.intensities]
+        case 'visualization_msgs/Marker'
+            number = 1;
+            for i = a(end:-1:1)
+               if(size(i.points,2) > 2)
+                   if(number == 1)
+                       struct.opt.points = i.points;
+                       number = 2;
+                   elseif(number == 2)
+                       struct.unopt.points = i.points;
+                       break
+                   else
+                    break
+                   end
+               end
+            end            
         otherwise
             fprintf('     Type: %s not yet supported!\n',type{:});
             continue
