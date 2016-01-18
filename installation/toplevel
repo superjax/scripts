@@ -83,3 +83,11 @@ else
   ./install_themes
   cd ..
 fi
+
+echo_yellow "Install Xbox Driver? [Y/n]"
+read XBOX
+if [ "$XBOX" == 'n' ]; then
+  echo_red "bypassing Xbox driver installation"
+else
+  ./xbox_driver
+fi

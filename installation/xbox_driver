@@ -1,4 +1,8 @@
 #!/bin/bash
 
-sudo apt-add repository -y ppa:rael-gc/ubuntu-xboxdrv
-sudo apt-get update && sudo apt-get install -y ubuntu-xboxdrv
+sudo apt-get install -y jstest-gtk
+sudo rmmod xpad
+sudo apt-get install --install-recommends jstest* joystick xboxdrv
+echo "blacklist xpad" | sudo tee -a /etc/modprobe.d/blacklist.conf
+sudo xboxdrv --silent
+sudo sed -i '$isudo xboxdrv --silent' /etc/rc.local
