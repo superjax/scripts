@@ -9,8 +9,8 @@ import sys
 
 
 def fix_bag(in_bag, out_bag):
-    print("reading", in_bag)
-    print("writing", out_bag)
+    print('reading', in_bag)
+    print('writing', out_bag)
     bag = rosbag.Bag(in_bag)
     with rosbag.Bag(out_bag, 'w') as outbag:
         topics = bag.get_type_and_topic_info()[1].keys()
@@ -115,5 +115,15 @@ def fix_bag(in_bag, out_bag):
 
 
 if __name__ == "__main__":
-    # fix_bag(~/03_WSC_2015_02_24.bag, out.bag)
-    fix_bag(sys.argv[1], sys.argv[2])
+    if len(sys.argv) == 3:
+        fix_bag(sys.argv[1], sys.argv[2])
+    else:
+        print('')
+        print('')
+        print('rosbag relative_nav_msgs migration script')
+        print('by James Jackson')
+        print('')
+        print('USAGE:')
+        print('-h: \t show this menu')
+        print('')
+        print('[INPUT BAG FILE] \t [OUTPUT BAG FILE]')
