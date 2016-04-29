@@ -1,4 +1,0 @@
-#!/bin/bash
-
-COFF="\033[0m"
-echo -e "\033[1;31m$@ ${COFF}";
