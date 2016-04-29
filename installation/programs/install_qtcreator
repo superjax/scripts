@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#qtcreator
+echo_green "**************************Installing #QtCreator*********************************"
+sudo apt-get -y install qtcreator
+echo_yellow "copying qtcreator.desktop file"
+sudo cp qtcreator.desktop /usr/share/applications/qtcreator.desktop

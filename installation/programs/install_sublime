@@ -1,0 +1,74 @@
+#!/bin/bash
+
+echo_green "********************** Installing Sublime Text 3 ********************"
+sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
+sudo apt-get update
+sudo apt-get install sublime-text-installer
+
+echo_blue "Setting Up Sublime Packages"
+wget https://sublime.wbond.net/Package%20Control.sublime-package --no-check-certificate
+mkdir -p ~/.config/sublime-text-3/Installed\ Packages
+mv Package\ Control.sublime-package ~/.config/sublime-text-3/Installed\ Packages/
+
+mkdir -p  ~/.config/sublime-text-3/Packages/User/Package\ Control
+mkdir -p  ~/.config/sublime-text-3/Packages/User
+
+echo " {
+    "\""bootstrapped"\"": true,
+    "\""in_process_packages"\"":
+    [
+    ],
+    "\""installed_packages"\"":
+    [
+        "\""Anaconda"\"",
+        "\""CMake"\"",
+        "\""CMakeEditor"\"",
+        "\""Colorsublime"\"",
+        "\""GitGutter"\"",
+        "\""LaTeXTools"\"",
+        "\""Makefile Improved"\"",
+        "\""Origami"\"",
+        "\""Package Control"\"",
+        "\""Python Breakpoints"\"",
+        "\""SideBarEnhancements"\"",
+        "\""SublimeLinter"\"",
+        "\""SublimeLinter-pyflakes"\"",
+        "\""SublimeREPL"\""
+    ]
+}
+" > ~/.config/sublime-text-3/Packages/User/Package\ Control.sublime-settings
+
+echo " {
+    "\""file_exclude_patterns"\"":
+    [
+        "\""*.pyc"\"",
+        "\""*.pyo"\"",
+        "\""*.exe"\"",
+        "\""*.dll"\"",
+        "\""*.obj"\"",
+        "\""*.o"\"",
+        "\""*.a"\"",
+        "\""*.lib"\"",
+        "\""*.so"\"",
+        "\""*.dylib"\"",
+        "\""*.ncb"\"",
+        "\""*.suo"\"",
+        "\""*.pdb"\"",
+        "\""*.idb"\"",
+        "\"".DS_Store"\"",
+        "\""*.class"\"",
+        "\""*.psd"\"",
+        "\""*.db"\"",
+        "\""*.sublime-workspace"\""
+    ],
+    "\""font_size"\"": 10,
+    "\""hot_exit"\"": false,
+    "\""ignored_packages"\"":
+    [
+        "\""Makefile"\"",
+        "\""Vintage"\""
+    ],
+    "\""remember_open_files"\"": false
+}" > ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
+
+sudo apt-get install -y latexmk texlive texlive-full

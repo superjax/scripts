@@ -1,0 +1,17 @@
+[Desktop Entry]
+X-AppInstall-Package=matlab-support
+X-AppInstall-Popcon=10
+X-AppInstall-Section=multiverse
+
+Version=1.0
+Type=Application
+Terminal=false
+Exec=matlab -desktop
+Name=MATLAB
+Icon=matlab
+Categories=Development;Math;Science
+Comment=Scientific computing environment
+StartupNotify=true
+StartupWMClass=MATLAB R2015a - academic use
+
+X-Ubuntu-Gettext-Domain=app-install-data

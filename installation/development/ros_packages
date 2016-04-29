@@ -1,0 +1,43 @@
+#!/bin/sh
+
+echo_yellow "Installing Relative Nav Specific ROS Packages"
+echo_blue "NAVFN"
+sudo apt-get install -y ros-indigo-navfn
+
+echo_blue "Control Toolbox"
+sudo apt-get install -y ros-indigo-control-toolbox
+
+echo_blue "GLUT"
+sudo apt-get install -y freeglut3-dev
+
+echo_blue "Libbullet"
+sudo apt-get install -y libbullet-dev
+
+echo_blue "G2o"
+sudo apt-get install -y ros-indigo-libg2o
+
+echo_blue "SuiteSpares"
+sudo apt-get install -y libsuitesparse-dev
+
+echo_blue "Rosserial"
+sudo apt-get install -y ros-indigo-rosserial-arduino
+sudo apt-get install -y ros-indigo-rosserial
+
+echo_blue "pcl-ros"
+sudo apt-get install -y ros-indigo-pcl-ros
+
+echo_blue "geodesy"
+sudo apt-get install -y ros-indigo-geodesy
+
+echo_blue "joyConfig"
+sudo apt-get install -y ros-indigo-joy
+
+echo_blue "camera calibration parsers"
+sudo apt-get install -y ros-indigo-camera-calibration-parsers 
+
+echo_blue "openni2"
+sudo apt-get install -y ros-indigo-openni2-camera
+sudo apt-get install -y ros-indigo-openni2-launch
+
+echo_blue "GSL"
+sudo apt-get install -y libgsl0-dev

@@ -1,0 +1,11 @@
+source set_ros_master COMPUTER
+export ROSLAUNCH_SSH_UNKNOWN=1
+
+# ROS_WORKSPACE
+source /opt/ros/indigo/setup.bash
+#source ~/rel_nav_ws/devel/setup.bash
+
+#Turtlebot-specific variables
+export TURTLEBOT_3D_SENSOR=asus_xtion_pro
+export TURTLEBOT_SERIAL_PORT=/dev/ttyUSB0
+

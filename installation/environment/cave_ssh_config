@@ -1,0 +1,62 @@
+Host dave
+Hostname 10.8.33.215
+User dave
+
+Host magiccvs
+HostName magiccvs.byu.edu
+User zog_the_caveman	
+Port 290
+
+Host april
+HostName april
+User april
+
+Host casey
+HostName casey
+User casey
+
+Host shredder
+HostName shredder
+User shredder	
+
+Host splinter
+HostName splinter
+User splinter
+
+Host mikey
+HostName mikey
+User mikey
+
+Host leo
+HostName leo
+User leo
+
+Host laptop
+HostName laptop
+User gps_denied
+
+Host odroid
+HostName odroid
+User odroid
+
+Host splinter_vpn
+HostName splinter_vpn
+User splinter
+
+Host casey_vpn
+HostName casey_vpn
+User casey
+
+Host odroid_vpn
+HostName odroid_vpn
+User odroid
+
+Host laptop_vpn
+HostName laptop_vpn
+User gps_denied
+
+Host shredder_vpn
+HostName shredder_vpn
+User shredder
+
+

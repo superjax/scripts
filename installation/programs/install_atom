@@ -1,0 +1,7 @@
+#!/bin/sh
+
+#qtcreator
+echo_green "**************************Installing Atom*********************************"
+wget  https://atom.io/download/deb -O atom-amd64.deb
+sudo dpkg -i atom-amd64.deb
+rm atom-amd64.deb

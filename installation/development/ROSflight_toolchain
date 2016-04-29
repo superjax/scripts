@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo add-apt-repository -y ppa:terr.guo/gcc-arm-embedded
+sudo apt-get update

@@ -1,0 +1,39 @@
+# GENERAL
+- git: {local-name: relative_nav_msgs, uri: 'magiccvs:/git/relative_nav/relative_nav_msgs.git'}
+- git: {local-name: relative_nav_common, uri: 'magiccvs:/git/relative_nav/relative_nav_common.git'}
+- git: {local-name: relative_nav_launch, uri: 'magiccvs:/git/relative_nav/relative_nav_launch.git'}
+- git: {local-name: cortex_ros, uri: 'magiccvs:/git/relative_nav/cortex_ros.git'}
+- git: {local-name: hex_sim, uri: 'magiccvs:/git/relative_nav/hex_sim.git'}
+
+# PIXHAWK
+- git: {local-name: mavlink, uri: 'magiccvs:/git/relative_nav/mavlink.git'}
+- git: {local-name: mavlink_relay, uri: 'magiccvs:/git/relative_nav/mavlink_relay.git'}
+- git: {local-name: mavros, uri: 'magiccvs:/git/relative_nav/mavros.git'}
+
+# FRONT END
+- git: {local-name: rotor_controller, uri: 'magiccvs:/git/relative_nav/rotor_controller.git'}
+- git: {local-name: rotor_estimator, uri: 'magiccvs:/git/relative_nav/rotor_estimator.git'}
+- git: {local-name: rmekf, uri: 'magiccvs:/git/relative_nav/rmekf.git'}
+- git: {local-name: joy_velocity, uri: 'magiccvs:/git/relative_nav/joy_velocity.git'}
+- git: {local-name: obstacle_avoidance, uri: 'magiccvs:/git/relative_nav/obstacle_avoidance.git', version: 'turtle'}
+- git: {local-name: velocity_planner, uri: 'magiccvs:/git/relative_nav/velocity_planner.git'}
+- git: {local-name: obstacle_avoidance, uri: 'magiccvs:/git/relative_nav/obstacle_avoidance.git'}
+
+# SENSORS
+- git: {local-name: demo_rgbd, uri: 'magiccvs:/git/relative_nav/demo_rgbd.git'}
+- git: {local-name: vo_rgbd, uri: 'magiccvs:/git/relative_nav/vo_rgbd.git'}
+- git: {local-name: vo_cmu_relay, uri: 'magiccvs:/git/relative_nav/vo_cmu_relay.git'}
+- git: {local-name: altimeter, uri: 'magiccvs:/git/relative_nav/altimeter.git'}
+- git: {local-name: cereal_port, uri: 'magiccvs:/git/relative_nav/cereal_port.git'}
+- git: {local-name: microstrain_3dmgx2_imu, uri: 'magiccvs:/git/relative_nav/microstrain_3dmgx2_imu.git'}
+
+# BACK END
+- git: {local-name: geometry_check, uri: 'magiccvs:/git/relative_nav/geometry_check.git'}
+- git: {local-name: hex_map, uri: 'magiccvs:/git/relative_nav/hex_map.git'}
+- git: {local-name: openfabmap, uri: 'magiccvs:/git/relative_nav/openfabmap.git'}
+- git: {local-name: rgbd_cache, uri: 'magiccvs:/git/relative_nav/rgbd_cache.git'}
+- git: {local-name: high_level_path_follower, uri: 'magiccvs:/git/relative_nav/high_level_path_follower.git'}
+- git: {local-name: gps_relay, uri: 'magiccvs:/git/relative_nav/gps_relay.git'}
+- git: {local-name: ublox, uri: 'magiccvs:/git/relative_nav/ublox.git'}
+
+

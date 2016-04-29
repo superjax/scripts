@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#Spotify
+echo_green "*****************************Installing Spotify********************************"
+echo_yellow "adding spotify to sources.list"
+sudo bash -c "echo 'deb http://repository.spotify.com stable non-free' >> /etc/apt/sources.list"
+echo_yellow "Adding Public Spotify Key"
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 94558F59
+echo_yellow "Installing Spotify"
+sudo apt-get update
+sudo apt-get -y install spotify-client
+

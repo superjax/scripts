@@ -1,0 +1,82 @@
+#!/bin/bash
+
+source /etc/bash_completion.d/git-prompt
+
+COFF="\033[0m"
+function blue    { printf "\033[1;34m %-30s ${COFF}" $@; }
+function red     { echo -en "\033[1;31m$@${COFF}"; }
+function purple  { echo -en "\033[1;35m$@${COFF}"; }
+function cyan    { echo -en "\033[1;36m$@${COFF}"; }
+function white   { echo -en "\033[1;37m$@${COFF}"; }
+
+#path=$(pwd)
+#cd ..
+for dir in $(find . -maxdepth 2 -name .git -type d -prune | sort);
+do
+  dir=`echo $dir | awk '{split($0,array,"/")} END{print array[2]}'`
+  cd $dir
+  
+    LOCAL=$(git rev-parse @)
+    REMOTE=$(git rev-parse @{u})
+    BASE=$(git merge-base @ @{u})
+    
+    repo=$(basename `git rev-parse --show-toplevel`)
+    
+    current_branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
+    current_branch_status=$(__git_ps1)
+    
+    # Output
+    blue   "  $repo::" 
+    purple "$current_branch_status"
+    if [ $LOCAL = $REMOTE ]; then
+        echo -n "" #Up-to-date
+    elif [ $LOCAL = $BASE ]; then
+        red " Pull!"
+    elif [ $REMOTE = $BASE ]; then
+        red " Push!"
+    else
+        red " Diverged!"
+    fi
+
+    locals=""
+    while read local remote
+    do
+      [ "$current_branch" == "$local" ] && continue
+
+      if [ -z "$remote" ]; then
+        if [ -z "$locals" ]; then 
+          locals="$local"
+        else
+          locals="$locals, $local"
+        fi
+      else
+        white   "   ($local)"
+
+        git rev-list --left-right ${local}...${remote} -- 2>/dev/null >/tmp/git_upstream_status_delta || continue
+        LEFT_AHEAD=$(grep -c '^<' /tmp/git_upstream_status_delta)
+        RIGHT_AHEAD=$(grep -c '^>' /tmp/git_upstream_status_delta)
+        if [ "$LEFT_AHEAD" == "0" ] && [ "$RIGHT_AHEAD" == "0" ]; then
+          echo -n "" # Up-to-date
+        elif [ "$LEFT_AHEAD" != "0" ] && [ "$RIGHT_AHEAD" != "0" ]; then
+          red " Diverged"
+        elif [ "$LEFT_AHEAD" != "0" ]; then 
+          red " Push!"
+        elif [ "$RIGHT_AHEAD" != "0" ]; then 
+          red " Pull!"
+        fi
+
+      fi
+    done < <(git for-each-ref --format="%(refname:short) %(upstream:short)" refs/heads)
+    [ -n "$locals" ] && cyan "   ($locals)"
+
+
+
+    echo ""
+
+  cd ..
+done
+
+#cd $path
+
+
+

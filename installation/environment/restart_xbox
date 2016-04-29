@@ -1,0 +1,7 @@
+#!/bin/bash
+
+sudo kill $(ps aux | grep "[x]boxdrv" | awk '{print $2}')
+
+sudo xboxdrv --silent --quiet &
+
+exit
