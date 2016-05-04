@@ -1,7 +1,32 @@
 #!/bin/sh
 
-#qtcreator
+# atom
 echo_green "**************************Installing Atom*********************************"
-wget  https://atom.io/download/deb -O atom-amd64.deb
-sudo dpkg -i atom-amd64.deb
-rm atom-amd64.deb
+#wget  https://atom.io/download/deb -O atom-amd64.deb
+#sudo dpkg -i atom-amd64.deb
+#rm atom-amd64.deb
+
+# atom packages
+echo_yellow "Installing Atom Packages"
+apm install activate-power-mode
+apm install autocomplete-python
+apm install export-html
+apm install language-cmake
+apm install language-latex
+apm install latex
+apm install linter
+apm install monokai
+apm install monokai-slate
+apm install print-atom
+apm install script
+apm install shadow
+apm install autocomplete-clang
+apm install build
+apm install language-arduino
+apm install language-matlab
+apm install latex-autocomplete
+apm install linter-gcc
+apm install monokai-seti
+apm install pdf-view
+apm install python-tools
+apm install seti-ui

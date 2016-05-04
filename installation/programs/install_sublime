@@ -70,5 +70,3 @@ echo " {
     ],
     "\""remember_open_files"\"": false
 }" > ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
-
-sudo apt-get install -y latexmk texlive texlive-latex-recommended
