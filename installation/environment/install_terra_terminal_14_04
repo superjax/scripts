@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Download Raring package
+wget https://launchpad.net/~ozcanesen/+archive/ubuntu/terra-terminal/+files/terra_0.1.7~raring1_amd64.deb
+
+# install Raring package
+sudo dpkg -i terra_0.1.7~raring1_amd64.deb
+
+# Edit terra files to work with Ubuntu 14.04
+sudo sed -i '152 s/^/#/' /usr/lib/python2.7/dist-packages/terra/VteObject.py
+sudo sed -i '156 s/^/#/' /usr/lib/python2.7/dist-packages/terra/VteObject.py
+sudo sed -i '165 s/^/#/' /usr/lib/python2.7/dist-packages/terra/VteObject.py
+sudo sed -i '166 s/^/#/' /usr/lib/python2.7/dist-packages/terra/VteObject.py
+
+# remove downloaded files
+rm terra_0.1.7~raring1_amd64.deb
