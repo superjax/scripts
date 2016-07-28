@@ -1,10 +1,21 @@
-#!/bin/bash
-sudo apt-get remove -y binutils-arm-none-eabi gcc-arm-none-eabi
-#sudo apt-get update
-sudo apt-get install gcc-arm-none-eabi=4.9.3.2015q3-1trusty1
+# Install 32-bit dependencies
+sudo apt-get install lib32bz2-1.0 lib32ncurses5 lib32tinfo5 lib32z1 libc6-i386i
 
-#git clone git://git.code.sf.net/p/stm32flash/code stm32flash-code
-#cd stm32flash-code
-#sudo make install
-#cd ..
-#rm -rf stm32flash-code
+# Download ARM GCC toolchain
+wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q1-update/+download/gcc-arm-none-eabi-5_3-2016q1-20160330-linux.tar.bz2
+
+# Move toolchain binaries to /opt/ directory
+sudo tar -xvf gcc-arm-none-eabi-5_3-2016q1-20160330-linux.tar.bz2 -C /opt/.
+
+# remove tarball
+rm gcc-arm-none-eabi-5_3-2016q1-20160330-linux.tar.bz2
+
+# append exectuable to path
+echo 'export PATH=$PATH:/opt/gcc-arm-none-eabi-5_3-2016q1/bin' >> ~/.bashrc
+
+#Install stm32flash utility
+git clone git://git.code.sf.net/p/stm32flash/code stm32flash-code
+cd stm32flash-code
+sudo make install
+cd ..
+rm -rf stm32flash-code
