@@ -1,0 +1,28 @@
+#!/bin/sh
+
+
+#Install ROS
+echo_green "Install ROS Kinetic for Ubuntu 16.04 LTS Xenial Xerus based off of wiki.ros.org installation guide"
+echo_blue "Setup your sources.list"
+
+sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu $(lsb_release -sc) main" > /etc/apt/sources.list.d/ros-latest.list'
+
+echo_blue "Setup up your keys"
+
+sudo apt-key adv --keyserver hkp://ha.pool.sks-keyservers.net:80 --recv-key 0xB01FA116
+
+echo_blue "Installation"
+
+sudo apt-get update
+sudo apt-get -y install ros-kinetic-desktop-full
+
+echo_blue "Initialize rosdep"
+
+sudo rosdep init
+rosdep update
+
+echo_blue "Getting rosinstall"
+sudo apt-get -y install python-rosinstall
+
+echo_blue "Getting wstool"
+sudo apt-get -y install python-wstool
