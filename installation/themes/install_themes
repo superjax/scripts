@@ -21,8 +21,6 @@ sudo apt-get install -y numix-icon-theme numix-icon-theme-circle
 echo_green "************** Docky *****************"
 echo_yellow "Installing Docky"
 sudo apt-get install -y docky
-echo_blue "fixing docky resume problem"
-sudo bash fix_docky.sh
 
 # GRUB-Customizer
 echo_green "************** GRUB Customizer ****************"
