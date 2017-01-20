@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#sudo add-apt-repository -y ppa:nilarimogard/webupd8
-#sudo apt-get update
-#sudo apt-get -y install albert
+sudo add-apt-repository -y ppa:nilarimogard/webupd8
+sudo apt-get update
+sudo apt-get -y install albert
 
 mkdir -p ~/.config/autostart
 
