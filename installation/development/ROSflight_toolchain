@@ -1,17 +1,25 @@
 # Install 32-bit dependencies
-sudo apt-get install lib32bz2-1.0 lib32ncurses5 lib32tinfo5 lib32z1 libc6-i386i
+sudo apt-get -y install lib32ncurses5
 
 # Download ARM GCC toolchain
-wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q1-update/+download/gcc-arm-none-eabi-5_3-2016q1-20160330-linux.tar.bz2
+#wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q1-update/+download/gcc-arm-none-eabi-5_3-2016q1-20160330-linux.tar.bz2
 
 # Move toolchain binaries to /opt/ directory
-sudo tar -xvf gcc-arm-none-eabi-5_3-2016q1-20160330-linux.tar.bz2 -C /opt/.
+#sudo tar -xvf gcc-arm-none-eabi-5_3-2016q1-20160330-linux.tar.bz2 -C /opt/.
 
 # remove tarball
-rm gcc-arm-none-eabi-5_3-2016q1-20160330-linux.tar.bz2
+#rm gcc-arm-none-eabi-5_3-2016q1-20160330-linux.tar.bz2
 
 # append exectuable to path
-echo 'export PATH=$PATH:/opt/gcc-arm-none-eabi-5_3-2016q1/bin' >> ~/.bashrc
+#echo 'export PATH=$PATH:/opt/gcc-arm-none-eabi-5_3-2016q1/bin' >> ~/.bashrc
+
+# Install gcc-arm-none-eabi
+wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q3-update/+download/gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2
+tar -xvf gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 
+sudo mv gcc-arm-none-eabi-5_4-2016q3 /opt/.
+echo "export PATH=$PATH:/opt/gcc-arm-none-eabi-5_4-2016q3/bin" >> ~/.bashrc
+rm -rf gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 
+
 
 #Install stm32flash utility
 git clone git://git.code.sf.net/p/stm32flash/code stm32flash-code

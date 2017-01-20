@@ -36,14 +36,6 @@ else
   ./development/ros_packages
 fi
 
-echo_yellow "Install opencv 2.4 nonfree add-ons? [Y/n]"
-read OPENCV
-if [ "$OPENCV" == 'n' ]; then
-  echo_red "bypassing opencv 2.4 nonfree add-on"
-else
-  ./development/opencv_nonfree -y
-fi
-
 echo_yellow "Install the ROSflight toolchain? [Y/n]"
 read ROSFLIGHT
 if [ "$ROSFLIGHT" == 'n' ]; then
@@ -106,12 +98,4 @@ if [ "$THEME" == 'n' ]; then
   echo_red "bypassing Theme installation"
 else
   ./themes/install_themes
-fi
-
-echo_yellow "Install Xbox Driver? [Y/n]"
-read XBOX
-if [ "$XBOX" == 'n' ]; then
-  echo_red "bypassing Xbox driver installation"
-else
-  ./development/xbox_driver
 fi

@@ -73,10 +73,37 @@ echo "copying vim files"
 cp vimrc ~/.vimrc
 cp -r vim ~/.vim
 
+echo "copying git aliases"
+
+echo_yellow "what is your email (for git)"
+read GIT_EMAIL
+echo_yellow "what is your name (for git)"
+read GIT_NAME
+sed "s/EMAIL/$GIT_EMAIL/g" gitconfig > gitconfig.tmp
+sed "s/NAME/$GIT_NAME/g" gitconfig.tmp > gitconfig.tmp
+cp gitconfig.tmp ~/.gitconfig
+rm gitconfig.tmp
+
 echo "installing scripts to usr/local/bin"
 sudo cp clone /usr/local/bin
 sudo cp git-status /usr/local/bin
 sudo cp new_catkin_package /usr/local/bin
+
+echo "install drop-down terminator?"
+read INSTALL_TERMINATOR
+if [ "$INSTALL_TERMINATOR" == 'n']; then
+  echo_red "skipping terminator installation"
+else
+  ./install_terminator
+  gsettings set org.gnome.desktop.default-applications.terminal exec 'gnome-terminal'
+
+echo "install albert?"
+read INSTALL_ALBERT
+if [ "$INSTALL_ALBERT" == 'n']; then
+  echo_red "skipping albert installation"
+else
+  ./install_albert
+  echo -e "[Desktop Entry]\nName=albert\nExec=albert\nType=Application" >> ~/.config/autostart/albert.desktop
 
 if [ "$LOUD_SET_ROS_MASTER" == 'n' ]; then
 	sed '$ d' set_ros_master > set_ros_master.tmp

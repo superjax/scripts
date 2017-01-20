@@ -1,0 +1,10 @@
+[user]
+    name = NAME
+    email = EMAIL
+[push]
+	default = simple
+[alias]
+	co = checkout
+	st = status
+	ct = commit
+	subup = submodule update --init --recursive

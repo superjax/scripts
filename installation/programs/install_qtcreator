@@ -2,6 +2,9 @@
 
 #qtcreator
 echo_green "**************************Installing #QtCreator*********************************"
-sudo apt-get -y install qtcreator
-echo_yellow "copying qtcreator.desktop file"
-sudo cp qtcreator.desktop /usr/share/applications/qtcreator.desktop
+
+wget https://download.qt.io/official_releases/qtcreator/4.1/4.1.0/qt-creator-opensource-linux-x86_64-4.1.0.run
+chmod +x qt-creator-opensource-linux-x86_64-4.1.0.run 
+./qt-unified-linx 
+
+
