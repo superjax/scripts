@@ -115,6 +115,9 @@ for topic = topics
         case 'geometry_msgs/Point'
             struct.point = a;
             struct.time = [d.time] -t0; % This could also use the header time
+        case 'fcu_common/RCRaw'
+            struct.time = [d.time] -t0
+            struct.values = [a.values]
         case 'ublox_msgs/NavPOSLLH'
             struct.lon = double([a.lon])/1e7;
             struct.lat = double([a.lat])/1e7;
@@ -139,7 +142,14 @@ for topic = topics
             struct.range_min = [a.range_min];
             struct.range_max = [a.range_max];
             struct.ranges = [a.ranges];
-            struct.intensities = [a.intensities]
+            struct.intensities = [a.intensities];
+        case 'fcu_common/Airspeed'
+            h = [a.header];
+            hs = [h.stamp];
+            struct.time = [hs.time] - t0;
+            struct.velocity = [a.velocity];
+            struct.diff_press = [a.differential_pressure];
+            struct.temperature = [a.temperature];
         case 'visualization_msgs/Marker'
             number = 1;
             for i = a(end:-1:1)

@@ -41,3 +41,12 @@ sudo apt-get install -y ros-kinetic-openni2-launch
 
 echo_blue "GSL"
 sudo apt-get install -y libgsl0-dev
+
+
+echo_blue "pyQtgraph"
+sudo apt-get install -y python-opengl python-qt4-gl python-pyside.qtopengl
+git clone https://github.com/pyqtgraph/pyqtgraph.git
+cd pyqtgraph/
+sudo python setup.py install
+cd ..
+rm -rf pyqtgraph
