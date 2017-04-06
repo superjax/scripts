@@ -1,5 +1,3 @@
 #!/bin/bash
-echo "location of pwd"
-echo $PWD
 sudo cp echo_* /usr/local/bin/.
 echo_green "color functions installed"
