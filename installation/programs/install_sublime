@@ -14,59 +14,94 @@ mkdir -p  ~/.config/sublime-text-3/Packages/User/Package\ Control
 mkdir -p  ~/.config/sublime-text-3/Packages/User
 
 echo " {
-    "\""bootstrapped"\"": true,
-    "\""in_process_packages"\"":
-    [
-    ],
-    "\""installed_packages"\"":
-    [
-        "\""Anaconda"\"",
-        "\""CMake"\"",
-        "\""CMakeEditor"\"",
-        "\""Colorsublime"\"",
-        "\""GitGutter"\"",
-        "\""LaTeXTools"\"",
-        "\""Makefile Improved"\"",
-        "\""Origami"\"",
-        "\""Package Control"\"",
-        "\""Python Breakpoints"\"",
-        "\""SideBarEnhancements"\"",
-        "\""SublimeLinter"\"",
-        "\""SublimeLinter-pyflakes"\"",
-        "\""SublimeREPL"\""
-    ]
+  "bootstrapped": true,
+  "in_process_packages":
+  [
+  ],
+  "installed_packages":
+  [
+    "All Autocomplete",
+    "AutoFileName",
+    "ayu",
+    "Boxy Theme",
+    "BracketHighlighter",
+    "C++ Completions",
+    "ClangAutoComplete",
+    "CMake",
+    "CMakeEditor",
+    "ColorSchemeEditor",
+    "Colorsublime",
+    "DocBlockr",
+    "Git",
+    "GitGutter",
+    "LaTeXTools",
+    "Makefile Improved",
+    "Markdown Extended",
+    "Markdown Preview",
+    "MarkdownEditing",
+    "MarkdownLivePreview",
+    "Monokai Extended",
+    "Origami",
+    "Package Control",
+    "PackageResourceViewer",
+    "Python Completions",
+    "SideBarEnhancements",
+    "SublimeCodeIntel",
+    "SublimeGDB",
+    "SublimeLinter",
+    "Terminal",
+    "Themr",
+    "WordHighlight"
+  ]
 }
+
+
 " > ~/.config/sublime-text-3/Packages/User/Package\ Control.sublime-settings
 
 echo " {
-    "\""file_exclude_patterns"\"":
-    [
-        "\""*.pyc"\"",
-        "\""*.pyo"\"",
-        "\""*.exe"\"",
-        "\""*.dll"\"",
-        "\""*.obj"\"",
-        "\""*.o"\"",
-        "\""*.a"\"",
-        "\""*.lib"\"",
-        "\""*.so"\"",
-        "\""*.dylib"\"",
-        "\""*.ncb"\"",
-        "\""*.suo"\"",
-        "\""*.pdb"\"",
-        "\""*.idb"\"",
-        "\"".DS_Store"\"",
-        "\""*.class"\"",
-        "\""*.psd"\"",
-        "\""*.db"\"",
-        "\""*.sublime-workspace"\""
-    ],
-    "\""font_size"\"": 10,
-    "\""hot_exit"\"": false,
-    "\""ignored_packages"\"":
-    [
-        "\""Makefile"\"",
-        "\""Vintage"\""
-    ],
-    "\""remember_open_files"\"": false
+  "added_words":
+  [
+    "Kalman",
+    "decorrelate",
+    "keyframe",
+    "decorrelated",
+    "keyframes",
+    "fabmap",
+    "subgraphing"
+  ],
+  "color_scheme": "Packages/Boxy Theme/schemes/Boxy Monokai.tmTheme",
+  "file_exclude_patterns":
+  [
+    "*.pyc",
+    "*.pyo",
+    "*.exe",
+    "*.dll",
+    "*.obj",
+    "*.o",
+    "*.a",
+    "*.lib",
+    "*.so",
+    "*.dylib",
+    "*.ncb",
+    "*.suo",
+    "*.pdb",
+    "*.idb",
+    ".DS_Store",
+    "*.class",
+    "*.psd",
+    "*.db",
+    "*.sublime-workspace"
+  ],
+  "font_size": 9,
+  "hot_exit": false,
+  "ignored_packages":
+  [
+    "Makefile",
+    "Vintage"
+  ],
+  "remember_full_screen": true,
+  "remember_open_files": false,
+  "spell_check": false,
+  "theme": "Boxy Monokai.sublime-theme"
+
 }" > ~/.config/sublime-text-3/Packages/User/Preferences.sublime-settings
