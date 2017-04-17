@@ -20,4 +20,12 @@ echo_blue "copying sublime settings"
 mkdir -p ~/.config/sublime-text-3/Packages/User
 cp sublime/LaTeXTools.sublime-settings ~/.config/sublime-text-3/Packages/User/.
 cp sublime/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/.
-cp sublime/Package%20Control.sublime-package ~/.config/sublime-text-3/Packages/User/.
+cp sublime/Package\ Control.sublime-settings ~/.config/sublime-text-3/Packages/User/.
+
+echo "export PATH=\$PATH:/opt/sublime-text" >> ~/.bashrc
+echo "alias sub=sublime-text" >> ~/.bashrc
+
+source ~/.bashrc
+
+sub
+
