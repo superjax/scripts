@@ -1,0 +1,52 @@
+#!/bin/sh
+
+echo_yellow "Installing Relative Nav Specific ROS Packages"
+echo_blue "NAVFN"
+sudo apt-get install -y ros-kinetic-navfn
+
+echo_blue "Control Toolbox"
+sudo apt-get install -y ros-kinetic-control-toolbox
+
+echo_blue "GLUT"
+sudo apt-get install -y freeglut3-dev
+
+echo_blue "Libbullet"
+sudo apt-get install -y libbullet-dev
+
+echo_blue "G2o"
+sudo apt-get install -y ros-kinetic-libg2o
+
+echo_blue "SuiteSpares"
+sudo apt-get install -y libsuitesparse-dev
+
+echo_blue "Rosserial"
+sudo apt-get install -y ros-kinetic-rosserial-arduino
+sudo apt-get install -y ros-kinetic-rosserial
+
+echo_blue "pcl-ros"
+sudo apt-get install -y ros-kinetic-pcl-ros
+
+echo_blue "geodesy"
+sudo apt-get install -y ros-kinetic-geodesy
+
+echo_blue "joyConfig"
+sudo apt-get install -y ros-kinetic-joy
+
+echo_blue "camera calibration parsers"
+sudo apt-get install -y ros-kinetic-camera-calibration-parsers 
+
+echo_blue "openni2"
+sudo apt-get install -y ros-kinetic-openni2-camera
+sudo apt-get install -y ros-kinetic-openni2-launch
+
+echo_blue "GSL"
+sudo apt-get install -y libgsl0-dev
+
+
+echo_blue "pyQtgraph"
+sudo apt-get install -y python-opengl python-qt4-gl python-pyside.qtopengl
+git clone https://github.com/pyqtgraph/pyqtgraph.git
+cd pyqtgraph/
+sudo python setup.py install
+cd ..
+rm -rf pyqtgraph

@@ -1,0 +1,7 @@
+source set_ros_master COMPUTER
+export ROSLAUNCH_SSH_UNKNOWN=1
+
+# ROS_WORKSPACE
+source /opt/ros/kinetic/setup.bash
+#source ~/rel_nav_ws/devel/setup.bash
+

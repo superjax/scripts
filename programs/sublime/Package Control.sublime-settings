@@ -1,0 +1,41 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"All Autocomplete",
+		"AutoFileName",
+		"ayu",
+		"Boxy Theme",
+		"BracketHighlighter",
+		"C++ Completions",
+		"ClangAutoComplete",
+		"CMake",
+		"CMakeEditor",
+		"ColorSchemeEditor",
+		"Colorsublime",
+		"DocBlockr",
+		"Git",
+		"GitGutter",
+		"LaTeXTools",
+		"Makefile Improved",
+		"Markdown Extended",
+		"Markdown Preview",
+		"MarkdownEditing",
+		"MarkdownLivePreview",
+		"Monokai Extended",
+		"Origami",
+		"Package Control",
+		"PackageResourceViewer",
+		"Python Completions",
+		"SideBarEnhancements",
+		"SublimeCodeIntel",
+		"SublimeGDB",
+		"SublimeLinter",
+		"Terminal",
+		"Themr",
+		"WordHighlight"
+	]
+}

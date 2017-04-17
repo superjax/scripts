@@ -1,0 +1,126 @@
+#!/bin/bash
+
+# color functions
+cd color_functions
+bash copy_color_functions
+cd ..
+
+echo_blue "************* INSTALLING ENVIRONMENT ********************"
+
+if [ "$1" == '--silent' ]; then
+	echo "silent install"
+	SILENT=true
+else
+	SILENT=false
+fi
+
+if [ "$SILENT" = true ]; then
+	echo "default cave setup"
+	CAVE=y
+	echo "magiccvs username = zog_the_caveman"
+	echo "copying bashrc file"
+	COPY_BASHRC=y
+	echo "setting ROS_MASTER_URI to localhost"
+	ROS_MASTER_URI=local
+	echo "display ROS_HOSTNAME and ROS_MASTER_URI on startup"
+	LOUD_SET_ROS_MASTER=y
+else
+	echo_yellow "Is this a cave computer? [y/N]"
+	read CAVE
+	echo_yellow "Do you want to copy the .bashrc file? [Y/n]"
+	read COPY_BASHRC
+	echo_yellow "what is your ROS_MASTER_URI?"
+	read ROS_MASTER_URI
+	echo_yellow "show ROS_HOSTNAME and ROS_MASTER_URI on startup? [Y/n]"
+	read LOUD_SET_ROS_MASTER
+fi
+
+if [ ! -d ~/.ssh ]; then
+  mkdir ~/.ssh
+fi
+
+if [ "$CAVE" == 'y' ]; then
+	echo_green "cave setup"
+	echo "copying ssh config"
+    mkdir ~/.ssh
+    cp cave_ssh_config ~/.ssh/config
+	echo "copying etc_hosts"
+	sudo cp cave_etc_hosts /etc/hosts
+else
+	echo_yellow "What is your magiccvs username? (firstname_lastname)"
+	read MAGICC_USERNAME
+
+	echo "customizing files"
+	sed "s/COMPUTER/$HOSTNAME/g" etc_hosts > etc_hosts.tmp
+	sed "s/USERNAME/$MAGICC_USERNAME/g" ssh_config > ssh_config.tmp
+	echo "copying ssh config"
+	cp ssh_config.tmp ~/.ssh/config
+	echo "copying ssh config"
+	sudo cp etc_hosts.tmp /etc/hosts
+fi
+
+if [ "$COPY_BASHRC" == 'n' ]; then
+	echo_red "skipping bashrc"
+else
+	echo_green "copying .bashrc"
+	cp bashrc ~/.bashrc
+fi
+
+echo "copying ros files"
+sed "s/COMPUTER/$ROS_MASTER_URI/g" rosrc > rosrc.tmp
+cp rosrc.tmp ~/.rosrc
+cp rosalias ~/.rosalias
+
+echo "copying vim files"
+cp vimrc ~/.vimrc
+cp -r vim ~/.vim
+
+echo "copying git aliases"
+
+echo_yellow "what is your email (for git)"
+read GIT_EMAIL
+echo_yellow "what is your name (for git)"
+read GIT_NAME
+sed "s/EMAIL/$GIT_EMAIL/g" gitconfig > gitconfig.tmp
+sed -i "s/NAME/$GIT_NAME/g" gitconfig.tmp
+cp gitconfig.tmp ~/.gitconfig
+rm gitconfig.tmp
+
+echo "installing scripts to usr/local/bin"
+sudo cp clone /usr/local/bin
+sudo cp git-status /usr/local/bin
+sudo cp new_catkin_package /usr/local/bin
+
+echo "install drop-down terminator? [Y/n]"
+read INSTALL_TERMINATOR
+if [ "$INSTALL_TERMINATOR" == 'n' ]; then
+  echo_red "skipping terminator installation"
+else
+  echo_green "Installing Terminator"
+  bash install_terminator
+  gsettings set org.gnome.desktop.default-applications.terminal exec 'gnome-terminal'
+fi
+
+echo "install albert? [Y/n]"
+read INSTALL_ALBERT
+if [ "$INSTALL_ALBERT" == 'n' ]; then
+  echo_red "skipping albert installation"
+else
+  echo_green "installing albert"
+  bash install_albert
+fi
+
+if [ "$LOUD_SET_ROS_MASTER" == 'n' ]; then
+	sed '$ d' set_ros_master > set_ros_master.tmp
+	sed '$ d' set_ros_master.tmp > set_ros_master.tmp
+	sed '$ d' set_ros_master.tmp > set_ros_master.tmp
+	sed '$ d' set_ros_master.tmp > set_ros_master.tmp
+	echo "copying quiet set_ros_master script"
+	sudo cp set_ros_master.tmp /usr/local/bin/set_ros_master
+else
+	echo "copying loud set_ros_master script"
+	sudo cp set_ros_master /usr/local/bin
+fi
+
+echo "cleaning"
+rm -rf *.tmp

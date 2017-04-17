@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--Written on Fri Jan 6 16:24:22 2017 by Qt Creator 4.2.0-->
+<externaltool id="Edit_with_sublime">
+    <description>This tool edits the current file in sublime</description>
+    <displayname>Edit with sublime</displayname>
+    <category>Text</category>
+    <executable output="showinpane" error="showinpane" modifiesdocument="yes">
+        <path>/opt/sublime_text/sublime_text</path>
+        <arguments>%{CurrentDocument:NativeFilePath}</arguments>
+        <workingdirectory>%{CurrentDocument:Path}</workingdirectory>
+    </executable>
+</externaltool>
