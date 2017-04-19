@@ -7,6 +7,7 @@ sudo add-apt-repository ppa:noobslab/themes -y
 sudo add-apt-repository ppa:noobslab/icons -y
 sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
 sudo add-apt-repository ppa:ricotz/docky -y
+sudo apt-add-repository ppa:tista/adapta -y
 sudo apt-get update 
 
 echo_green "******************** Themes ****************"
@@ -14,6 +15,7 @@ sudo apt-get install -y numix-gtk-theme numix-icon-theme-circle
 sudo apt-get install -y numix-wallpaper-notd
 sudo apt install arc-theme arc-icons 
 sudo apt install vimix-gtk-themes vimix-flat-themes
+sudo apt install adapta-gtk-theme
 
 # Dock
 echo_green "************** Plank *****************"
