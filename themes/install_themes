@@ -16,6 +16,7 @@ sudo apt-get install -y numix-wallpaper-notd
 sudo apt install -y arc-theme arc-icons 
 sudo apt install -y vimix-gtk-themes vimix-flat-themes
 sudo apt install -y adapta-gtk-theme
+sudo apt install -y unity-tweak-tool
 
 # Dock
 echo_green "************** Plank *****************"
