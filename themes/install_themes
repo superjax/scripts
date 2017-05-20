@@ -13,9 +13,9 @@ sudo apt-get update
 echo_green "******************** Themes ****************"
 sudo apt-get install -y numix-gtk-theme numix-icon-theme-circle 
 sudo apt-get install -y numix-wallpaper-notd
-sudo apt install arc-theme arc-icons 
-sudo apt install vimix-gtk-themes vimix-flat-themes
-sudo apt install adapta-gtk-theme
+sudo apt install -y arc-theme arc-icons 
+sudo apt install -y vimix-gtk-themes vimix-flat-themes
+sudo apt install -y adapta-gtk-theme
 
 # Dock
 echo_green "************** Plank *****************"
