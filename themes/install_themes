@@ -13,9 +13,10 @@ sudo apt-get update
 echo_green "******************** Themes ****************"
 sudo apt-get install -y numix-gtk-theme numix-icon-theme-circle 
 sudo apt-get install -y numix-wallpaper-notd
-sudo apt install arc-theme arc-icons 
-sudo apt install vimix-gtk-themes vimix-flat-themes
-sudo apt install adapta-gtk-theme
+sudo apt install -y arc-theme arc-icons 
+sudo apt install -y vimix-gtk-themes vimix-flat-themes
+sudo apt install -y adapta-gtk-theme
+sudo apt install -y unity-tweak-tool
 
 # Dock
 echo_green "************** Plank *****************"
@@ -28,29 +29,29 @@ sudo apt-get install -y grub-customizer
 
 # Fonts
 echo_green "*************** Fonts ******************"
-#wget http://www.fontsquirrel.com/fonts/download/open-sans
-#unzip open-sans
-#sudo mv *.ttf /usr/share/fonts/.
-#rm open-sans
-#rm *.txt
-#wget https://www.fontsquirrel.com/fonts/download/exo-2
-#unzip exo-2
-#sudo mv *.otf /usr/share/fonts/.
-#rm exo-2
-#rm *.txt
-#wget https://www.fontsquirrel.com/fonts/download/Inconsolata
-#unzip Inconsolata
-#sudo mv Inconsolata.otf /usr/share/fonts
-#rm Inconsolata
-#rm *.txt
-#wget https://www.fontsquirrel.com/fonts/download/roboto-2014
-#unzip roboto-2014
-#sudo mv *.ttf /usr/share/fonts/.
-#rm roboto-2014
-#rm *.txt
-#wget https://www.fontsquirrel.com/fonts/download/open-sans-condensed
-#unzip open-sans-condensed
-#sudo mv *.ttf /usr/share/fonts/.
-#rm open-sans-condensed
-#rm *.txt
+wget http://www.fontsquirrel.com/fonts/download/open-sans
+unzip open-sans
+sudo mv *.ttf /usr/share/fonts/.
+rm open-sans
+rm *.txt
+wget https://www.fontsquirrel.com/fonts/download/exo-2
+unzip exo-2
+sudo mv *.otf /usr/share/fonts/.
+rm exo-2
+rm *.txt
+wget https://www.fontsquirrel.com/fonts/download/Inconsolata
+unzip Inconsolata
+sudo mv Inconsolata.otf /usr/share/fonts
+rm Inconsolata
+rm *.txt
+wget https://www.fontsquirrel.com/fonts/download/roboto-2014
+unzip roboto-2014
+sudo mv *.ttf /usr/share/fonts/.
+rm roboto-2014
+rm *.txt
+wget https://www.fontsquirrel.com/fonts/download/open-sans-condensed
+unzip open-sans-condensed
+sudo mv *.ttf /usr/share/fonts/.
+rm open-sans-condensed
+rm *.txt
 
