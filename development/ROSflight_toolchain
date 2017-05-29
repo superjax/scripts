@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Install 32-bit dependencies
 sudo apt-get -y install lib32ncurses5
 
@@ -42,6 +44,12 @@ echo "#!/bin/bash
 cd /opt/openocd/0.10.0-201701241841/bin
 ./openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg" > ~/start_openocd_f1
 
+# Remove modem manager (which gets in the way of STM's VCP for F3 and F4 devices)
+sudo apt purge -y modemmanager
+
+# Add user to the dailout group
+sudo adduser $USER dialout
+
 chmod +x start_openocd_f1
 sudo mv start_openocd_f1 /usr/local/bin/.
 
@@ -49,3 +57,5 @@ sudo mv start_openocd_f1 /usr/local/bin/.
 sudo dpkg --add-architecture i386
 sudo apt-get update
 sudo apt-get install -y libpython2.7:i386
+
+echo_blue "ROSflight toolchain installation finished.  Please restart your machine to complete installation"
