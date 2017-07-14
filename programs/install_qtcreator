@@ -8,8 +8,8 @@ chmod +x qt-creator-opensource-linux-x86_64-4.1.0.run
 sudo ./qt-creator-opensource-linux-x86_64-4.1.0.run
 
 echo_blue "Copying IDE settings"
-mkdir ~/.config/QtProjec
-cp qtcreator/settings ~/.config/QtProject/qtcreator
+mkdir ~/.config/QtProject
+cp -r qtcreator/settings ~/.config/QtProject/qtcreator
 
 echo_blue "Copying Desktop File"
 sudo rm /usr/share/app-install/desktop/qtcreator:qtcreator.desktop
