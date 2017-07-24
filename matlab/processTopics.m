@@ -23,12 +23,78 @@ for topic = topics
     a = [msgs{:,:}];
     c = [meta{:,:}];
     d = [c.time];
-    if t0 < 0
-       t0 = d(1).time - 0.1;
+    
+    % use header time if it exists
+    t = [];
+    if isfield(a, 'header')
+        e = [a.header];
+        f = [e.stamp];
+        t = [f.time];
+    else
+        t = [d.time];
     end
+   
+    
+    if t0 < 0
+       t0 = t(1);
+    end
+    
     clear struct
+    struct.t = t - t0;
     switch type{:}
-        case 'relative_nav_msgs/FilterState'
+        case 'std_msgs/Float32'
+            struct.a = a;
+        case 'sensor_msgs/Temperature'
+            struct.temp = [a.temperature];
+            struct.cov = [a.variance];
+        case 'sensor_msgs/MagneticField'
+            struct.mag = [a.magnetic_field];
+            struct.cov = [a.magnetic_field_covariance];
+        case 'rosflight_msgs/OutputRaw'
+            struct.values = [a.values];
+        case 'rosflight_msgs/Status'
+            struct.failsafe = [a.failsafe];
+            struct.armed = [a.armed];
+            struct.rc_override = [a.rc_override];
+            struct.num_errors = [a.num_errors];
+            struct.loop_time_us = [a.loop_time_us];
+        case 'rosgraph_msgs/Log'
+            struct.level = [a.level];
+            struct.msg = {a.msg};
+        case 'std_msgs/String'
+            struct.msg = {a.data};
+        case 'rosflight_msgs/Attitude'
+            struct.q = [a.attitude];
+            [r,p,y] = rollPitchYawFromQuaternion(struct.q');
+            struct.q_euler = [r,p,y]*180/pi;
+            struct.omega = [a.angular_velocity];
+        case 'geometry_msgs/Vector3Stamped'
+            struct.vec = [a.vector];            
+        case 'rosflight_msgs/Barometer'
+            struct.altitude = [a.altitude];
+            struct.pressure = [a.pressure];
+            struct.temperature = [a.temperature];
+        case 'rosflight_msgs/GPS'
+            struct.fix = [a.fix];
+            struct.num_sat = [a.NumSat];
+            struct.latitude = [a.latitude];
+            struct.longitude = [a.longitude];
+            struct.altitude = [a.altitude];
+            struct.speed = [a.speed];
+            struct.ground_course = [a.ground_course];
+            struct.covariance = [a.covariance];
+        case 'rosflight_msgs/Command'
+            struct.mode = [a.mode];
+            struct.ignore = [a.ignore];
+            struct.x = [a.x];
+            struct.y = [a.y];
+            struct.z = [a.z];
+            struct.F = [a.F];
+        case 'std_msgs/Bool'
+            struct.data = a;
+        case 'rosflight_msgs/RCRaw'
+            struct.vals = [a.values];
+        case 'relative_nav/FilterState'
             b = [a.transform];
             struct.transform.translation = [b.translation];
             struct.transform.rotation = [b.rotation];
@@ -36,47 +102,38 @@ for topic = topics
             struct.transform.euler = [r,p,y]*180/pi;
             struct.velocity = [a.velocity];     
             struct.node_id = [a.node_id];
-            struct.time = [d.time] - t0;
          case 'sensor_msgs/NavSatFix'
             struct.latitude = [a.latitude];
             struct.longitude = [a.longitude];
             cov = [a.position_covariance];
             struct.hAcc = cov(1,:);
-            struct.time = [d.time] - t0;
         case 'geometry_msgs/Transform'
             struct.transform.translation = [a.translation];
             struct.transform.rotation = [a.rotation];
             [r,p,y] = rollPitchYawFromQuaternion(struct.transform.rotation.');
             struct.transform.euler = [r,p,y]*180/pi;
-            struct.time = [d.time] - t0;
         case 'geometry_msgs/TransformStamped'
             b = [a.transform];
             struct.transform.translation = [b.translation];
             struct.transform.rotation = [b.rotation];
             [r,p,y] = rollPitchYawFromQuaternion(struct.transform.rotation.');
             struct.transform.euler = [r,p,y]*180/pi;
-            struct.time = [d.time] - t0;
-        case 'relative_nav_msgs/DesiredState'
+        case 'relative_nav/DesiredState'
             struct.pose = [a.pose];
             struct.velocity = [a.velocity];
             struct.acceleration = [a.acceleration];
             struct.node_id = [a.node_id];
-            
-            struct.time = [d.time] - t0;
-        case 'relative_nav_msgs/Snapshot'
+        case 'relative_nav/Snapshot'
             struct.state = [a.state];
             struct.covariance = [a.covariance_diagonal];
             struct.node_id = [a.node_id];
-            struct.time = [d.time] - t0; % This could also use the header time
         case 'geometry_msgs/PoseStamped'
             b = [a.pose];
             struct.pose.position = [b.position];
             struct.pose.orientation = [b.orientation];
-            struct.time = [d.time] - t0;
         case 'sensor_msgs/Range'
             struct.range = [a.range];
-            struct.time = [d.time] -t0; % This could also use the header time
-        case 'relative_nav_msgs/VOUpdate'
+        case 'relative_nav/VOUpdate'
             b = [a.transform];
             struct.current_keyframe_id = [a.current_keyframe_id];
             struct.new_keyframe = [a.new_keyframe];
@@ -85,10 +142,8 @@ for topic = topics
             struct.transform.rotation = [b.rotation];
             [r,p,y] = rollPitchYawFromQuaternion(struct.transform.rotation.');
             struct.transform.euler = [r,p,y]*180/pi;
-            struct.time = [d.time] -t0; % This could also use the header time
-        case 'relative_nav_msgs/Command'
+        case 'relative_nav/Command'
             struct.commands = [a];
-            struct.time = [d.time] -t0; % This could also use the header time
         case 'evart_bridge/transform_plus'
             b = [a.transform];
             struct.transform.translation = [b.translation];
@@ -96,28 +151,21 @@ for topic = topics
             struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
             struct.euler = [a.euler];
             struct.velocity = [a.velocity];
-            struct.time = [d.time] -t0; % This could also use the header time
-        case 'relative_nav_msgs/Edge'
+        case 'relative_nav/Edge'
             b = [a.transform];
             struct.transform.translation = [b.translation];
             struct.transform.rotation = [b.rotation];
             struct.transform.euler = rollPitchYawFromQuaternion(struct.transform.rotation.')*180/pi;
             struct.from_node_id = [a.from_node_id];
             struct.to_node_id = [a.to_node_id];
-            struct.covariance = [a.covariance];
-            struct.time = [d.time] -t0; % This could also use the header time    
+            struct.covariance = [a.covariance];   
         case 'nav_msgs/Odometry'
             b = [a.pose];
             c = [b.pose];
             struct.pose.position = [c.position];
-            struct.pose.orientation = [c.orientation];
-            struct.time = [d.time] -t0; % This could also use the header time    
+            struct.pose.orientation = [c.orientation];  
         case 'geometry_msgs/Point'
             struct.point = a;
-            struct.time = [d.time] -t0; % This could also use the header time
-        case 'fcu_common/RCRaw'
-            struct.time = [d.time] -t0
-            struct.values = [a.values]
         case 'ublox_msgs/NavPOSLLH'
             struct.lon = double([a.lon])/1e7;
             struct.lat = double([a.lat])/1e7;
@@ -128,12 +176,10 @@ for topic = topics
             struct.lat = [a.latitude];
             cov = [a.position_covariance];
             struct.cov = cov(1,:);
-            [struct.x,struct.y,struct.zone] = deg2utm(struct.lat,struct.lon);
-            struct.time = [d.time] -t0; % This could also use the header time    
+            [struct.x,struct.y,struct.zone] = deg2utm(struct.lat,struct.lon);  
         case 'sensor_msgs/Imu'
             struct.acc = [a.linear_acceleration];
-            struct.gyro = [a.angular_velocity];
-            struct.time = [d.time] -t0; % This could also use the header time    
+            struct.gyro = [a.angular_velocity];   
         case 'sensor_msgs/LaserScan'
             struct.angle_min = [a.angle_min];
             struct.angle_max = [a.angle_max];
@@ -143,10 +189,7 @@ for topic = topics
             struct.range_max = [a.range_max];
             struct.ranges = [a.ranges];
             struct.intensities = [a.intensities];
-        case 'fcu_common/Airspeed'
-            h = [a.header];
-            hs = [h.stamp];
-            struct.time = [hs.time] - t0;
+        case 'rosflight_msgs/Airspeed'
             struct.velocity = [a.velocity];
             struct.diff_press = [a.differential_pressure];
             struct.temperature = [a.temperature];

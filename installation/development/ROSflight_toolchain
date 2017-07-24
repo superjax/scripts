@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Install 32-bit dependencies
 sudo apt-get -y install lib32ncurses5
 
@@ -14,10 +16,11 @@ sudo apt-get -y install lib32ncurses5
 #echo 'export PATH=$PATH:/opt/gcc-arm-none-eabi-5_3-2016q1/bin' >> ~/.bashrc
 
 # Install gcc-arm-none-eabi
+sudo apt install -y lib32ncurses5
 wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q3-update/+download/gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2
 tar -xvf gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2
 sudo mv gcc-arm-none-eabi-5_4-2016q3 /opt/.
-echo "export PATH=$PATH:/opt/gcc-arm-none-eabi-5_4-2016q3/bin" >> ~/.bashrc
+echo "export PATH=\$PATH:/opt/gcc-arm-none-eabi-5_4-2016q3/bin" >> ~/.bashrc
 rm -rf gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 
 
 
@@ -32,17 +35,27 @@ rm -rf stm32flash-code
 wget https://github.com/gnuarmeclipse/openocd/releases/download/gae-0.10.0-20170124/gnuarmeclipse-openocd-debian32-0.10.0-201701241841.tgz
 tar -xvf gnuarmeclipse-openocd-debian32-0.10.0-201701241841.tgz
 sudo mv openocd /opt/.
+rm gnuarmeclipse-openocd-debian32-0.10.0-201701241841.tgz
+
 
 # Create F1 open ocd script
 echo "#!/bin/bash
 
-cd /opt/openocd/0.9.0-201505190955/bin
+cd /opt/openocd/0.10.0-201701241841/bin
 ./openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg" > ~/start_openocd_f1
 
-sudo chmod +x start_openocd_f1
+# Remove modem manager (which gets in the way of STM's VCP for F3 and F4 devices)
+sudo apt purge -y modemmanager
+
+# Add user to the dailout group
+sudo adduser $USER dialout
+
+chmod +x start_openocd_f1
 sudo mv start_openocd_f1 /usr/local/bin/.
 
 # Add 32-bit python support so QtCreator can use OpenOCD
 sudo dpkg --add-architecture i386
 sudo apt-get update
-sudo apt-get install libpython2.7:i386
+sudo apt-get install -y libpython2.7:i386
+
+echo_blue "ROSflight toolchain installation finished.  Please restart your machine to complete installation"

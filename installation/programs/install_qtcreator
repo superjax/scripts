@@ -5,11 +5,15 @@ echo_green "**************************Installing #QtCreator*********************
 echo_blue "Downloading and Installing QtCreator 4.1.0"
 wget https://download.qt.io/official_releases/qtcreator/4.1/4.1.0/qt-creator-opensource-linux-x86_64-4.1.0.run
 chmod +x qt-creator-opensource-linux-x86_64-4.1.0.run 
-./qt-unified-linx 
+sudo ./qt-creator-opensource-linux-x86_64-4.1.0.run
 
 echo_blue "Copying IDE settings"
-cp qtcreator/settings ~/.config/QtProject/qtcreator
+mkdir ~/.config/QtProject
+cp -r qtcreator/settings ~/.config/QtProject/qtcreator
 
 echo_blue "Copying Desktop File"
 sudo rm /usr/share/app-install/desktop/qtcreator:qtcreator.desktop
 sudo cp qtcreator/qtcreator.desktop /usr/share/applications/.
+
+sudo ln -s /opt/qtcreator-4.1.0/bin/qtcreator /usr/local/bin/qtcreator
+

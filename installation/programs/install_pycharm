@@ -2,12 +2,12 @@
 
 echo_green "Installing PyCharm"
 wget https://download.jetbrains.com/python/pycharm-community-2017.1.1.tar.gz
-tar -xvf pycharm-professional-2017.1.1.tar.gz
-sudo mv pycharm-2017.1.1 /opt/.
-/opt/pycharm-2017.1.1/bin/pycharm.sh
+tar -xvf pycharm-community-2017.1.1.tar.gz
+sudo mv pycharm-community-2017.1.1 /opt/.
+/opt/pycharm-community-2017.1.1/bin/pycharm.sh 
 
 rm pycharm-community-2017.1.1.tar.gz
 
-echo "export PATH=$PATH:/opt/pycharm-2017.1.1/bin" >> ~/.bashrc
+echo "export PATH=\$PATH:/opt/pycharm-community-2017.1.1/bin" >> ~/.bashrc
 
 
