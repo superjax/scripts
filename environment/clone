@@ -1,0 +1,20 @@
+#!/bin/sh
+
+# Require one argument
+if [ -z "$1" ]; then
+  echo "Usage: $0 repo_name"
+  exit
+fi
+
+cd `printenv | grep ROS_PACKAGE_PATH | grep -o /home/$USER/.*/src` > /dev/null
+
+if [ -z "$2" ]; then
+  echo "- git: {local-name: $1, uri: 'magiccvs:/git/relative_nav/$1.git'}" >> .rosinstall
+else
+  echo "- git: {local-name: $1, uri: 'magiccvs:/git/relative_nav/$1.git', version: '$2'}" >> .rosinstall
+fi
+
+wstool update $1
+rospack profile > /dev/null
+
+cd - > /dev/null

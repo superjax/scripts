@@ -1,0 +1,15 @@
+#!/bin/bash
+
+echo -n "performing command "
+echo -n "$1"
+echo " in all subfolders"
+
+for D in `find . -maxdepth 1 -type d`
+do
+	if [ $D != "." ]; then
+	    cd $D
+	    $1
+	    cd ..
+	fi
+
+done

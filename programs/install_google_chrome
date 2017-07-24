@@ -1,0 +1,12 @@
+#!/bin/sh
+
+#Google Chrome
+echo_green "*************************Installing Google Chrome******************************"
+sudo apt-get install libxss1
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i google-chrome*.deb
+sudo apt-get install -yf
+echo_yellow "Copying google-chrome.desktop file"
+sudo cp google-chrome.desktop /usr/share/applications/.
+echo_yellow "Removing google chrome install files"
+rm google-chrome-stable_current_amd64.deb
