@@ -8,6 +8,7 @@ sudo add-apt-repository ppa:noobslab/icons -y
 sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
 sudo add-apt-repository ppa:ricotz/docky -y
 sudo apt-add-repository ppa:tista/adapta -y
+sudo add-apt-repository ppa:peterlevi/ppa -y
 sudo apt-get update 
 
 echo_green "******************** Themes ****************"
@@ -26,6 +27,10 @@ sudo apt-get install -y plank
 # GRUB-Customizer
 echo_green "************** GRUB Customizer ****************"
 sudo apt-get install -y grub-customizer
+
+# Variety
+echo_green "******************* Variety ******************"
+sudo apt install variety variety-slideshow
 
 # Fonts
 echo_green "*************** Fonts ******************"
