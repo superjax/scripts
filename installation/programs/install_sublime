@@ -22,8 +22,8 @@ cp sublime/LaTeXTools.sublime-settings ~/.config/sublime-text-3/Packages/User/.
 cp sublime/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/.
 cp sublime/Package\ Control.sublime-settings ~/.config/sublime-text-3/Packages/User/.
 
-echo "export PATH=\$PATH:/opt/sublime-text" >> ~/.bashrc
-echo "alias sub=sublime-text" >> ~/.bashrc
+echo "export PATH=\$PATH:/opt/sublime_text" >> ~/.bashrc
+echo "alias sub=sublime_text" >> ~/.bashrc
 
 source ~/.bashrc
 

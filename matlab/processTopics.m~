@@ -1,18 +1,17 @@
-function data = processTopics(topics, bagfile, tstart, tend)
+function data = processTopics(topics, bagfile, t0, tf)
 %clear rosbag_wrapper;
 %clear ros.Bag;
 
   if nargin < 3
-    tstart = 0;
+    t0 = -1;
   end
   
   if nargin < 4
-      tend = inf;
+      tf = inf;
   end
 
 addpath('./matlab_rosbag-0.4.1-linux64')
 addpath('./navfn')
-t0 = -1
 
 bag = ros.Bag.load(bagfile);
 for topic = topics
@@ -38,9 +37,10 @@ for topic = topics
     else
         t = [d.time];
     end
+   
     
     if t0 < 0
-        t0 = t(1);
+       t0 = t(1);
     end
     
     clear struct
@@ -218,8 +218,6 @@ for topic = topics
             continue
     end
     
-    struct = filter_struct(struct, (struct.t > tstart & struct.t < tend));
-    
     % Split topic name into sections
     topic_parts = strsplit(topic{1},'/');
     topic_parts(cellfun('isempty', topic_parts)) = [];
@@ -238,19 +236,17 @@ for topic = topics
             fprintf('Too long');
     end
     
+    indexes = 
+    struct = crop_struct(struct, indexes);
 end
 end
 
-function struct = filter_struct(struct, indexes)
+function struct = crop_struct(struct, indexes)
     fields = fieldnames(struct);
     for i = 1:numel(fields)
         if isstruct(struct.(fields{i}))
             struct.(fields{i}) = crop_struct(struct.(fields{i}));
         else
-            shape = size(struct.(fields{i}));
-            if shape(2) < shape(1)
-                struct.(fields{i}) = struct.(fields{i})'; 
-            end
             struct.(fields{i}) = struct.(fields{i})(:, indexes);
         end
     end
