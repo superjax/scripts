@@ -55,3 +55,8 @@ sudo mv *.ttf /usr/share/fonts/.
 rm open-sans-condensed
 rm *.txt
 
+# Variety
+echo_green "****************** Variety Slideshow ********************"
+sudo add-apt-repository ppa:peterlevi/ppa
+sudo apt update
+sudo apt install variety variety-slideshow

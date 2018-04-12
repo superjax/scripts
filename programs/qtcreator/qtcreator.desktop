@@ -3,7 +3,7 @@ X-AppInstall-Package=qtcreator
 X-AppInstall-Popcon=292
 X-AppInstall-Section=universe
 
-Exec=bash -i -c qtcreator %F
+Exec=bash -i -c /opt/Qt/Tools/QtCreator/bin/qtcreator.sh %F
 Icon=QtProject-qtcreator
 Type=Application
 Terminal=false

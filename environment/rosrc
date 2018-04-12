@@ -5,3 +5,5 @@ export ROSLAUNCH_SSH_UNKNOWN=1
 source /opt/ros/kinetic/setup.bash
 #source ~/rel_nav_ws/devel/setup.bash
 
+alias rosmaker="(cd `echo $ROS_PACKAGE_PATH | awk -Fsrc: '{print $1}'` && catkin_make -DCMAKE_BUILD_TYPE=Release)"
+alias rosmaked="(cd `echo $ROS_PACKAGE_PATH | awk -Fsrc: '{print $1}'` && catkin_make -DCMAKE_BUILD_TYPE=Debug)"
