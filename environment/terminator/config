@@ -1,6 +1,6 @@
 [global_config]
   always_on_top = True
-  enabled_plugins = CustomCommandsMenu, InactivityWatch, TestPlugin, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, MavenPluginURLHandler, LaunchpadBugURLHandler
+  enabled_plugins = CustomCommandsMenu, InactivityWatch, TestPlugin, TerminatorThemes, ActivityWatch, TerminalShot, LaunchpadCodeURLHandler, APTURLHandler, Logger, MavenPluginURLHandler, LaunchpadBugURLHandler
   hide_from_taskbar = True
   sticky = True
   title_hide_sizetext = True
@@ -8,7 +8,7 @@
   title_transmit_fg_color = "#d6d6d6"
   window_state = fullscreen
 [keybindings]
-  close_term = <Primary>d
+  close_term = <Primary><Shift>d
   cycle_next = <Shift>Page_Down
   cycle_prev = <Primary><Shift>Page_Up
   go_down = <Primary><Shift>Down
@@ -30,26 +30,94 @@
 [layouts]
   [[default]]
     [[[child0]]]
+      fullscreen = False
+      last_active_term = b91d4a38-4c09-4b76-9a92-4aea5f3ed66d
+      last_active_window = True
+      maximised = False
       order = 0
       parent = ""
-      position = 0:24
-      size = 1679, 298
+      position = 0:0
+      size = 1920, 1200
+      title = /bin/bash
       type = Window
     [[[child1]]]
       order = 0
       parent = child0
-      position = 839
+      position = 956
+      ratio = 0.49921875
       type = HPaned
-    [[[terminal2]]]
+    [[[child11]]]
+      order = 1
+      parent = child7
+      position = 472
+      ratio = 0.494786235662
+      type = HPaned
+    [[[child2]]]
       order = 0
       parent = child1
-      profile = default
-      type = Terminal
-    [[[terminal3]]]
+      position = 981
+      ratio = 0.819583333333
+      type = VPaned
+    [[[child4]]]
+      order = 1
+      parent = child2
+      position = 469
+      ratio = 0.49320083682
+      type = HPaned
+    [[[child7]]]
       order = 1
       parent = child1
-      profile = default
+      position = 984
+      ratio = 0.822083333333
+      type = VPaned
+    [[[child8]]]
+      order = 0
+      parent = child7
+      position = 489
+      ratio = 0.499491869919
+      type = VPaned
+    [[[terminal10]]]
+      order = 1
+      parent = child8
+      profile = Monokai dark
       type = Terminal
+      uuid = 967a39e2-efba-43f5-ac04-2550a8d831a5
+    [[[terminal12]]]
+      order = 0
+      parent = child11
+      profile = Monokai dark
+      type = Terminal
+      uuid = 97dfd36b-27c6-4231-be99-1c62a8975dac
+    [[[terminal13]]]
+      order = 1
+      parent = child11
+      profile = Monokai dark
+      type = Terminal
+      uuid = c96d1418-a3de-4795-8032-ac38e48ed6c3
+    [[[terminal3]]]
+      order = 0
+      parent = child2
+      profile = Monokai dark
+      type = Terminal
+      uuid = b91d4a38-4c09-4b76-9a92-4aea5f3ed66d
+    [[[terminal5]]]
+      order = 0
+      parent = child4
+      profile = Monokai dark
+      type = Terminal
+      uuid = 158cc8a4-a1c2-42c5-889f-c8d83db302b0
+    [[[terminal6]]]
+      order = 1
+      parent = child4
+      profile = Monokai dark
+      type = Terminal
+      uuid = cdca4711-ce8b-4c38-902c-549c9307ff36
+    [[[terminal9]]]
+      order = 0
+      parent = child8
+      profile = Monokai dark
+      type = Terminal
+      uuid = eb6e9a07-bd38-4fa8-bfd0-60616de34973
   [[original]]
     [[[child1]]]
       parent = window0
@@ -69,5 +137,103 @@
     font = Droid Sans Mono 10
     foreground_color = "#dadada"
     scroll_on_output = False
+    scrollback_infinite = True
     scrollback_lines = 4096
-    use_system_font = False
+  [[Atom]]
+    background_color = "#161719"
+    background_image = None
+    cursor_color = "#d0d0d0"
+    foreground_color = "#c5c8c6"
+    palette = "#000000:#fd5ff1:#87c38a:#ffd7b1:#85befd:#b9b6fc:#85befd:#e0e0e0:#000000:#fd5ff1:#94fa36:#f5ffa8:#96cbfe:#b9b6fc:#85befd:#e0e0e0"
+  [[Brogrammer]]
+    background_color = "#131313"
+    background_image = None
+    cursor_color = "#b9b9b9"
+    foreground_color = "#d6dbe5"
+    palette = "#1f1f1f:#f81118:#2dc55e:#ecba0f:#2a84d2:#4e5ab7:#1081d6:#d6dbe5:#d6dbe5:#de352e:#1dd361:#f3bd09:#1081d6:#5350b9:#0f7ddb:#ffffff"
+  [[Elementary]]
+    background_color = "#181818"
+    background_image = None
+    cursor_color = "#bbbbbb"
+    foreground_color = "#efefef"
+    palette = "#242424:#d71c15:#5aa513:#fdb40c:#063b8c:#e40038:#2595e1:#efefef:#4b4b4b:#fc1c18:#6bc219:#fec80e:#0955ff:#fb0050:#3ea8fc:#8c00ec"
+  [[Material]]
+    background_color = "#eaeaea"
+    background_image = None
+    cursor_color = "#16afca"
+    foreground_color = "#232322"
+    palette = "#212121:#b7141f:#457b24:#f6981e:#134eb2:#560088:#0e717c:#efefef:#424242:#e83b3f:#7aba3a:#ffea2e:#54a4f3:#aa4dbc:#26bbd1:#d9d9d9"
+  [[MaterialDark]]
+    background_color = "#232322"
+    background_image = None
+    cursor_color = "#16afca"
+    foreground_color = "#e5e5e5"
+    palette = "#212121:#b7141f:#457b24:#f6981e:#134eb2:#560088:#0e717c:#efefef:#424242:#e83b3f:#7aba3a:#ffea2e:#54a4f3:#aa4dbc:#26bbd1:#d9d9d9"
+  [[Molokai]]
+    background_color = "#121212"
+    background_image = None
+    cursor_color = "#bbbbbb"
+    foreground_color = "#bbbbbb"
+    palette = "#121212:#fa2573:#98e123:#dfd460:#1080d0:#8700ff:#43a8d0:#bbbbbb:#555555:#f6669d:#b1e05f:#fff26d:#00afff:#af87ff:#51ceff:#ffffff"
+  [[Monokai Soda]]
+    background_color = "#1a1a1a"
+    background_image = None
+    cursor_color = "#f6f7ec"
+    foreground_color = "#c4c5b5"
+    palette = "#1a1a1a:#f4005f:#98e024:#fa8419:#9d65ff:#f4005f:#58d1eb:#c4c5b5:#625e4c:#f4005f:#98e024:#e0d561:#9d65ff:#f4005f:#58d1eb:#f6f6ef"
+    scrollback_infinite = True
+  [[Monokai Vivid]]
+    background_color = "#121212"
+    background_image = None
+    cursor_color = "#fb0007"
+    foreground_color = "#f9f9f9"
+    palette = "#121212:#fa2934:#98e123:#fff30a:#0443ff:#f800f8:#01b6ed:#ffffff:#838383:#f6669d:#b1e05f:#fff26d:#0443ff:#f200f6:#51ceff:#ffffff"
+  [[Monokai dark]]
+    background_darkness = 0.88
+    background_image = None
+    background_type = transparent
+    cursor_color = "#ffffff"
+    foreground_color = "#f8f8f2"
+    palette = "#75715e:#f92672:#a6e22e:#f4bf75:#66d9ef:#ae81ff:#2aa198:#f9f8f5:#272822:#f92672:#a6e22e:#f4bf75:#66d9ef:#ae81ff:#2aa198:#f9f8f5"
+    scrollback_infinite = True
+  [[Panda]]
+    background_color = "#292a2b"
+    background_image = None
+    cursor_color = "#f0eeee"
+    foreground_color = "#e6e6e6"
+    palette = "#676b79:#ff2c6d:#19f9d8:#ffb86c:#45a9f9:#b084eb:#6fc1ff:#d3d7cf:#676b79:#ff9ac1:#19f9d8:#ffcc95:#45a9f9:#b084eb:#6fc1ff:#eeeeec"
+  [[Pandora]]
+    background_color = "#141e43"
+    background_image = None
+    cursor_color = "#43d58e"
+    foreground_color = "#e1e1e1"
+    palette = "#000000:#ff4242:#74af68:#ffad29:#338f86:#9414e6:#23d7d7:#e2e2e2:#3f5648:#ff3242:#74cd68:#ffb929:#23d7d7:#ff37ff:#00ede1:#ffffff"
+  [[Peppermint]]
+    background_image = None
+    cursor_color = "#BBBBBB"
+    foreground_color = "#c7c7c7"
+    palette = "#353535:#E64569:#89D287:#DAB752:#439ECF:#D961DC:#64AAAF:#B3B3B3:#535353:#E4859A:#A2CCA1:#E1E387:#6FBBE2:#E586E7:#96DCDA:#DEDEDE"
+  [[Solarized Dark]]
+    background_color = "#001e27"
+    background_image = None
+    cursor_color = "#708284"
+    foreground_color = "#708284"
+    palette = "#002831:#d11c24:#738a05:#a57706:#2176c7:#c61c6f:#259286:#eae3cb:#001e27:#bd3613:#475b62:#536870:#708284:#5956ba:#819090:#fcf4dc"
+  [[Solarized Light]]
+    background_color = "#fcf4dc"
+    background_image = None
+    cursor_color = "#536870"
+    foreground_color = "#536870"
+    palette = "#002831:#d11c24:#738a05:#a57706:#2176c7:#c61c6f:#259286:#eae3cb:#001e27:#bd3613:#475b62:#536870:#708284:#5956ba:#819090:#fcf4dc"
+  [[SpaceGray]]
+    background_color = "#20242d"
+    background_image = None
+    cursor_color = "#b3b8c3"
+    foreground_color = "#b3b8c3"
+    palette = "#000000:#b04b57:#87b379:#e5c179:#7d8fa4:#a47996:#85a7a5:#b3b8c3:#000000:#b04b57:#87b379:#e5c179:#7d8fa4:#a47996:#85a7a5:#ffffff"
+  [[SpaceGray Eighties]]
+    background_color = "#222222"
+    background_image = None
+    cursor_color = "#bbbbbb"
+    foreground_color = "#bdbaae"
+    palette = "#15171c:#ec5f67:#81a764:#fec254:#5486c0:#bf83c1:#57c2c1:#efece7:#555555:#ff6973:#93d493:#ffd256:#4d84d1:#ff55ff:#83e9e4:#ffffff"
