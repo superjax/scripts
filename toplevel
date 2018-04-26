@@ -20,10 +20,10 @@ else
   cd ..
 fi
 
-echo_yellow "Install ROS Kinetic? [Y/n]"
-read INDIGO
-if [ "$INDIGO" == 'n' ]; then
-  echo_red "bypassing ROS kinetic installation"
+echo_yellow "Install ROS Melodic? [Y/n]"
+read ROS
+if [ "$ROS" == 'n' ]; then
+  echo_red "bypassing ROS Melodic installation"
 else
   ./development/install_kinetic
 fi
