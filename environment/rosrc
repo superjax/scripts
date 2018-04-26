@@ -2,7 +2,7 @@ source set_ros_master COMPUTER
 export ROSLAUNCH_SSH_UNKNOWN=1
 
 # ROS_WORKSPACE
-source /opt/ros/kinetic/setup.bash
+source /opt/ros/melodic/setup.bash
 #source ~/rel_nav_ws/devel/setup.bash
 
 alias rosmaker="(cd `echo $ROS_PACKAGE_PATH | awk -Fsrc: '{print $1}'` && catkin_make -DCMAKE_BUILD_TYPE=Release)"
