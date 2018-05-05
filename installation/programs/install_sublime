@@ -1,9 +1,11 @@
 #!/bin/bash
 
 echo_green "********************** Installing Sublime Text 3 ********************"
-sudo add-apt-repository -y ppa:webupd8team/sublime-text-3
+wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
+echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 sudo apt-get update
-sudo apt-get install sublime-text-installer
+sudo apt-get install sublime-text
+
 
 echo_blue "Setting Up Sublime Packages"
 wget https://sublime.wbond.net/Package%20Control.sublime-package --no-check-certificate
@@ -22,7 +24,6 @@ cp sublime/LaTeXTools.sublime-settings ~/.config/sublime-text-3/Packages/User/.
 cp sublime/Preferences.sublime-settings ~/.config/sublime-text-3/Packages/User/.
 cp sublime/Package\ Control.sublime-settings ~/.config/sublime-text-3/Packages/User/.
 
-echo "export PATH=\$PATH:/opt/sublime_text" >> ~/.bashrc
 echo "alias sub=sublime_text" >> ~/.bashrc
 
 source ~/.bashrc

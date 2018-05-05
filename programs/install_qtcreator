@@ -1,19 +1,16 @@
 #!/bin/sh
 
-echo_green "**************************Installing #QtCreator*********************************"
+echo_green "**************************Installing QtCreator*********************************"
 
-echo_blue "Downloading and Installing QtCreator 4.1.0"
-wget https://download.qt.io/official_releases/qtcreator/4.1/4.1.0/qt-creator-opensource-linux-x86_64-4.1.0.run
-chmod +x qt-creator-opensource-linux-x86_64-4.1.0.run 
+echo_blue "Downloading and Installing QtCreator"
+wget http://mirrors.ocf.berkeley.edu/qt/archive/online_installers/3.0/qt-unified-linux-x64-3.0.4-online.run
+sudo chmod +x qt-creator-opensource-linux-x86_64-4.1.0.run
 sudo ./qt-creator-opensource-linux-x86_64-4.1.0.run
 
 echo_blue "Copying IDE settings"
 mkdir ~/.config/QtProject
 cp -r qtcreator/settings ~/.config/QtProject/qtcreator
 
-echo_blue "Copying Desktop File"
+echo_blue "Fixing Icons"
 sudo rm /usr/share/app-install/desktop/qtcreator:qtcreator.desktop
 sudo cp qtcreator/qtcreator.desktop /usr/share/applications/.
-
-sudo ln -s /opt/qtcreator-4.1.0/bin/qtcreator /usr/local/bin/qtcreator
-

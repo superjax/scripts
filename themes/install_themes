@@ -3,25 +3,20 @@
 # Themes
 echo_green "****************** Adding PPA's ******************"
 sudo apt-add-repository ppa:numix/ppa -y
-sudo add-apt-repository ppa:noobslab/themes -y
+#sudo add-apt-repository ppa:noobslab/themes -y
 sudo add-apt-repository ppa:noobslab/icons -y
 sudo add-apt-repository ppa:danielrichter2007/grub-customizer -y
 sudo add-apt-repository ppa:ricotz/docky -y
 sudo apt-add-repository ppa:tista/adapta -y
+sudo add-apt-repository ppa:peterlevi/ppa
 sudo apt-get update 
 
 echo_green "******************** Themes ****************"
 sudo apt-get install -y numix-gtk-theme numix-icon-theme-circle 
-sudo apt-get install -y numix-wallpaper-notd
 sudo apt install -y arc-theme arc-icons 
 sudo apt install -y vimix-gtk-themes vimix-flat-themes
 sudo apt install -y adapta-gtk-theme
-sudo apt install -y unity-tweak-tool
-
-# Dock
-echo_green "************** Plank *****************"
-echo_yellow "Installing Plank"
-sudo apt-get install -y plank
+sudo apt install -y gnome-tweak-tool
 
 # GRUB-Customizer
 echo_green "************** GRUB Customizer ****************"
@@ -57,6 +52,4 @@ rm *.txt
 
 # Variety
 echo_green "****************** Variety Slideshow ********************"
-sudo add-apt-repository ppa:peterlevi/ppa
-sudo apt update
-sudo apt install variety variety-slideshow
+sudo apt install variety 
