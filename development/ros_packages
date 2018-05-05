@@ -49,4 +49,4 @@ git clone https://github.com/pyqtgraph/pyqtgraph.git
 cd pyqtgraph/
 sudo python setup.py install
 cd ..
-rm -rf pyqtgraph
+sudo rm -rf pyqtgraph

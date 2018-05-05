@@ -16,13 +16,8 @@ sudo apt-get -y install lib32ncurses5
 #echo 'export PATH=$PATH:/opt/gcc-arm-none-eabi-5_3-2016q1/bin' >> ~/.bashrc
 
 # Install gcc-arm-none-eabi
-sudo apt install -y lib32ncurses5
-wget https://launchpad.net/gcc-arm-embedded/5.0/5-2016-q3-update/+download/gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2
-tar -xvf gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2
-sudo mv gcc-arm-none-eabi-5_4-2016q3 /opt/.
-echo "export PATH=\$PATH:/opt/gcc-arm-none-eabi-5_4-2016q3/bin" >> ~/.bashrc
-rm -rf gcc-arm-none-eabi-5_4-2016q3-20160926-linux.tar.bz2 
-
+sudo add-apt-repository ppa:team-gcc-arm-embedded/ppa
+sudo apt install -y lib32ncurses5 gcc-arm-embedded
 
 #Install stm32flash utility
 git clone git://git.code.sf.net/p/stm32flash/code stm32flash-code
@@ -32,26 +27,35 @@ cd ..
 rm -rf stm32flash-code
 
 # Install Debugger Support
-wget https://github.com/gnuarmeclipse/openocd/releases/download/gae-0.10.0-20170124/gnuarmeclipse-openocd-debian32-0.10.0-201701241841.tgz
-tar -xvf gnuarmeclipse-openocd-debian32-0.10.0-201701241841.tgz
+https://github.com/gnu-mcu-eclipse/openocd/releases/download/v0.10.0-5-20171110/gnu-mcu-eclipse-openocd-0.10.0-5-20171110-1117-debian64.tgz
+tar -xvf gnu-mcu-eclipse-openocd-0.10.0-5-20171110-1117-debian64.tgz
 sudo mv openocd /opt/.
-rm gnuarmeclipse-openocd-debian32-0.10.0-201701241841.tgz
-
+rm gnu-mcu-eclipse-openocd-0.10.0-5-20171110-1117-debian64.tgz
 
 # Create F1 open ocd script
 echo "#!/bin/bash
-
-cd /opt/openocd/0.10.0-201701241841/bin
+cd /opt/openocd/0.10.0-5-20171110-1117/bin
 ./openocd -f interface/stlink-v2.cfg -f target/stm32f1x.cfg" > ~/start_openocd_f1
+sudo chmod +x ~/start_openocd_f1
+sudo mv ~/start_openocd_f1 /usr/local/bin
+
+# Create F1 open ocd script
+echo "#!/bin/bash
+cd /opt/openocd/0.10.0-5-20171110-1117/bin
+./openocd -f interface/stlink-v2.cfg -f target/stm32f4x.cfg" > ~/start_openocd_f4
+sudo chmod +x ~/start_openocd_f4
+sudo mv ~/start_openocd_f4
 
 # Remove modem manager (which gets in the way of STM's VCP for F3 and F4 devices)
 sudo apt purge -y modemmanager
 
-# Add user to the dailout group
-sudo adduser $USER dialout
+# Create udev rule for F4 Devices
+echo "# DFU (Internal bootloader for STM32 MCUs)
+SUBSYSTEM==/"usb/", ATTRS{idVendor}==/"0483/", ATTRS{idProduct}==/"df11/", MODE=/"0664/", GROUP=/"plugdev/"" > ~/45-stdfu-permissions.rules
+sudo mv ~/45-stdfu-permissions.rules /etc/udev/rules.d/.
 
-chmod +x start_openocd_f1
-sudo mv start_openocd_f1 /usr/local/bin/.
+# Add user to the dailout and plugdev groups
+sudo adduser $USER dialout plugdev
 
 # Add 32-bit python support so QtCreator can use OpenOCD
 sudo dpkg --add-architecture i386
