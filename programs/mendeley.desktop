@@ -1,0 +1,13 @@
+[Desktop Entry]
+
+Version=1.0
+Type=Application
+Terminal=false
+Exec=/opt/mendeley/bin/mendeleydesktop
+Name=Mendeley Desktop
+Icon=mendeley
+Categories=Math;Science;Reference
+Comment=Free Reference Manager and PDF Organizer
+StartupNotify=true
+StartupWMClass=mendeleydesktop.x86_64
+

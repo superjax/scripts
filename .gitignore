@@ -1,0 +1,7 @@
+*.run*
+*.swp
+*.tar.gz
+*.zip
+*.deb
+*.tar.bz2
+*.m~

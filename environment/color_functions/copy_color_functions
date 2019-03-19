@@ -1,0 +1,3 @@
+#!/bin/bash
+sudo cp echo_* /usr/local/bin/.
+echo_green "color functions installed"
